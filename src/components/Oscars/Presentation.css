@@ -5,6 +5,7 @@
   --oscar-black: #111111;
   --oscar-white: #ffffff;
   --oscar-red: #8b0000;
+  --oscar-charcoal: #55565A;
   --oscar-winner: var(--oscar-gold);
 }
 
@@ -134,13 +135,15 @@ body {
 /* Sections de catégories */
 .category-section {
   min-height: 100vh;
+  max-height: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: clamp(1rem, 3vw, 2rem);
+  padding: 5vh 3vw;
   position: relative;
   scroll-snap-align: start;
-  overflow: auto;
+  overflow: hidden;
   background: var(--oscar-white);
 }
 
@@ -156,17 +159,22 @@ body {
 .category-content {
   max-width: min(1200px, 95vw);
   width: 100%;
+  height: 90vh;
   text-align: center;
-  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2vh;
+  padding: 2vh 0;
 }
 
 .category-title {
   font-family: 'Futura PT Medium', 'Futura', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: min(8vw, 3rem);
   color: var(--oscar-gold);
-  margin-bottom: clamp(1rem, 3vw, 2rem);
+  margin-bottom: 2vh;
   text-transform: uppercase;
-  letter-spacing: clamp(1px, 0.5vw, 3px);
+  letter-spacing: 0.1em;
   position: relative;
   display: inline-block;
 }
@@ -174,28 +182,31 @@ body {
 .category-title:after {
   content: '';
   position: absolute;
-  width: 80%;
-  height: 3px;
+  width: 60%;
+  height: 2px;
   background-color: var(--oscar-gold);
-  bottom: -10px;
-  left: 10%;
+  bottom: -1vh;
+  left: 20%;
 }
 
 /* Conteneur des nominés */
 .nominees-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(0.5rem, 2vw, 2rem);
-  margin: clamp(1.5rem, 3vw, 3rem) 0;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.5vh;
+  width: 100%;
+  max-width: min(600px, 90vw);
+  padding: 16px;
+  margin: 0 auto;
+  flex: 1;
 }
 
 /* Cartes des nominés */
 .nominee-card {
-  border-radius: 50px;
-  padding: clamp(1.5rem, 2vw, 2rem);
-  width: clamp(200px, calc(100% / 3 - 2rem), 300px);
-  min-height: 100px;
+  border-radius: 12px;
+  padding: 2vh 4vw;
+  height: min(12vh, 90px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,6 +215,7 @@ body {
   position: relative;
   background: var(--oscar-white);
   border: 1px solid rgba(212, 175, 55, 0.3);
+  width: 100%;
 }
 
 .nominee-card:hover {
@@ -223,23 +235,23 @@ body {
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
 }
 
-.nominee-name {
+.nominee-title {
   font-family: 'Futura PT Medium', 'Futura', sans-serif;
-  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  margin-bottom: 0.5rem;
+  font-size: min(3.5vw, 1.2rem);
+  margin-bottom: 0.5vh;
   color: var(--oscar-gold);
   position: relative;
   z-index: 2;
   text-align: left;
 }
 
-.winner-card .nominee-name {
+.winner-card .nominee-title {
   color: var(--oscar-black);
 }
 
-.nominee-movie {
+.nominee-description {
   font-family: 'Futura PT Light Book', 'Futura', sans-serif;
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  font-size: min(3vw, 1rem);
   color: var(--oscar-black);
   font-style: italic;
   position: relative;
@@ -248,7 +260,7 @@ body {
   opacity: 0.8;
 }
 
-.winner-card .nominee-movie {
+.winner-card .nominee-description {
   color: var(--oscar-black);
   opacity: 0.9;
 }
@@ -258,16 +270,18 @@ body {
   background-color: transparent;
   color: var(--oscar-gold);
   border: 2px solid var(--oscar-gold);
-  padding: clamp(0.7rem, 1.5vw, 1rem) clamp(1.2rem, 3vw, 2rem);
+  padding: 1.5vh 4vw;
   font-family: 'Futura PT Medium', 'Futura', sans-serif;
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-size: min(3.5vw, 1rem);
   border-radius: 50px;
   cursor: pointer;
-  margin: clamp(1rem, 2vw, 2rem) 0;
+  margin: 2vh auto;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
   box-shadow: none;
+  width: fit-content;
+  min-width: min(200px, 60vw);
 }
 
 .reveal-winner-btn:hover {
@@ -283,32 +297,117 @@ html {
 }
 
 /* Media Queries pour différentes tailles d'écran */
-@media (max-width: 576px) {
-  .nominee-card {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 1.2rem 1.5rem;
+@media (max-width: 768px) {
+  .nominees-container {
+    gap: 1.2vh;
   }
-  
-  .category-section {
-    padding: 4rem 1rem 2rem;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+  .nominee-card {
+    height: min(10vh, 80px);
+    padding: 1.5vh 5vw;
   }
 }
 
-@media (max-height: 500px) and (orientation: landscape) {
+@media (max-width: 480px) {
+  .category-content {
+    height: 80vh;
+    gap: 1.5vh;
+  }
+
+  .category-title {
+    font-size: 7vw;
+    margin-bottom: 1.5vh;
+  }
+
   .nominees-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 0.8rem;
+    gap: 1vh;
+    max-width: 95vw;
   }
-  
+
   .nominee-card {
-    padding: 0.8rem;
-    width: 100%;
+    height: min(9vh, 70px);
+    padding: 1.2vh 5vw;
   }
+
+  .nominee-title {
+    font-size: min(4vw, 1.1rem);
+  }
+
+  .nominee-description {
+    font-size: min(3.5vw, 0.9rem);
+  }
+
+  .reveal-winner-btn {
+    padding: 1.2vh 5vw;
+    font-size: 3.5vw;
+    min-width: 50vw;
+  }
+}
+
+@media (max-height: 600px) {
+  .category-content {
+    height: 80vh;
+    gap: 1vh;
+  }
+
+  .nominees-container {
+    gap: 0.8vh;
+  }
+
+  .nominee-card {
+    height: min(11vh, 60px);
+    padding: 1vh 4vw;
+  }
+
+  .category-title {
+    margin-bottom: 1vh;
+  }
+
+  .reveal-winner-btn {
+    padding: 1vh 4vw;
+    margin: 1vh auto;
+  }
+}
+
+/* Style spécial pour les films non vus */
+.not-seen-card {
+  background: linear-gradient(to right, var(--oscar-white), rgba(85, 86, 90, 0.05));
+  border: 1px solid var(--oscar-charcoal);
+  opacity: 0.5;
+}
+
+.not-seen-card:hover {
+  box-shadow: 0 10px 20px rgba(85, 86, 90, 0.2);
+}
+
+.not-seen-indicator {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  color: var(--oscar-charcoal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  font-family: 'Futura PT Light Book', 'Futura', sans-serif;
+}
+
+.not-seen-card .nominee-title,
+.not-seen-card .nominee-name,
+.not-seen-card .nominee-movie,
+.not-seen-card .nominee-crew,
+.not-seen-card .nominee-description {
+  color: var(--oscar-charcoal);
+}
+
+/* When a not-seen card is also a winner */
+.not-seen-card.winner-card {
+  background: linear-gradient(to right, var(--oscar-white), rgba(85, 86, 90, 0.1));
+  border: 1px solid var(--oscar-charcoal);
+  box-shadow: 0 0 20px rgba(85, 86, 90, 0.3);
+}
+
+.not-seen-card.winner-card:hover {
+  box-shadow: 0 0 25px rgba(85, 86, 90, 0.4);
 }
