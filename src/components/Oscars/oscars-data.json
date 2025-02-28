@@ -2,33 +2,6 @@
     "year": 2025,
     "categories": [
         {
-            "name": "Actor in a Leading Role",
-            "nominees": [
-                {
-                    "actor": "Adrien Brody",
-                    "film": "The Brutalist"
-                },
-                {
-                    "actor": "Timothée Chalamet",
-                    "film": "A Complete Unknown"
-                },
-                {
-                    "actor": "Colman Domingo",
-                    "film": "Sing Sing"
-                },
-                {
-                    "actor": "Ralph Fiennes",
-                    "film": "Conclave"
-                },
-                {
-                    "actor": "Sebastian Stan",
-                    "film": "The Apprentice"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
             "name": "Actor in a Supporting Role",
             "nominees": [
                 {
@@ -50,33 +23,6 @@
                 {
                     "actor": "Jeremy Strong",
                     "film": "The Apprentice"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Actress in a Leading Role",
-            "nominees": [
-                {
-                    "actor": "Cynthia Erivo",
-                    "film": "Wicked"
-                },
-                {
-                    "actor": "Karla Sofía Gascón",
-                    "film": "Emilia Pérez"
-                },
-                {
-                    "actor": "Mikey Madison",
-                    "film": "Anora"
-                },
-                {
-                    "actor": "Demi Moore",
-                    "film": "The Substance"
-                },
-                {
-                    "actor": "Fernanda Torres",
-                    "film": "I'm Still Here"
                 }
             ],
             "my_winner": null,
@@ -122,7 +68,7 @@
                     "film": "Memoir of a Snail"
                 },
                 {
-                    "film": "Wallace & Gromit: Vengeance Most Fowl"
+                    "film": "Wallace & Gromit"
                 },
                 {
                     "film": "The Wild Robot"
@@ -132,196 +78,54 @@
             "official_winner": null
         },
         {
-            "name": "Animated Short Film",
-            "nominees": [
-                {
-                    "film": "Beautiful Men"
-                },
-                {
-                    "film": "In the Shadow of the Cypress"
-                },
-                {
-                    "film": "Magic Candies"
-                },
-                {
-                    "film": "Wander to Wonder"
-                },
-                {
-                    "film": "Yuck!"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Cinematography",
-            "nominees": [
-                {
-                    "film": "The Brutalist",
-                    "crew": "Hoyte van Hoytema"
-                },
-                {
-                    "film": "Dune: Part Two",
-                    "crew": "Greig Fraser"
-                },
-                {
-                    "film": "Emilia Pérez",
-                    "crew": "Benoît Debie"
-                },
-                {
-                    "film": "Maria",
-                    "crew": "Darius Khondji"
-                },
-                {
-                    "film": "Nosferatu",
-                    "crew": "Jarin Blaschke"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Costume Design",
+            "name": "Writing (Adapted Screenplay)",
             "nominees": [
                 {
                     "film": "A Complete Unknown",
-                    "crew": "Mark Bridges"
+                    "crew": "Eric Roth"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "Colleen Atwood"
-                },
-                {
-                    "film": "Gladiator II",
-                    "crew": "Janty Yates"
-                },
-                {
-                    "film": "Nosferatu",
-                    "crew": "Michael Wilkinson"
-                },
-                {
-                    "film": "Wicked",
-                    "crew": "Catherine Martin"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Directing",
-            "nominees": [
-                {
-                    "actor": "Sean Baker",
-                    "film": "Anora"
-                },
-                {
-                    "actor": "Brady Corbet",
-                    "film": "The Brutalist"
-                },
-                {
-                    "actor": "James Mangold",
-                    "film": "A Complete Unknown"
-                },
-                {
-                    "actor": "Jacques Audiard",
-                    "film": "Emilia Pérez"
-                },
-                {
-                    "actor": "Coralie Fargeat",
-                    "film": "The Substance"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Documentary Feature Film",
-            "nominees": [
-                {
-                    "film": "Black Box Diaries"
-                },
-                {
-                    "film": "No Other Land"
-                },
-                {
-                    "film": "Porcelain War"
-                },
-                {
-                    "film": "Soundtrack to a Coup d'Etat"
-                },
-                {
-                    "film": "Sugarcane"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Documentary Short Film",
-            "nominees": [
-                {
-                    "film": "Death by Numbers"
-                },
-                {
-                    "film": "I Am Ready, Warden"
-                },
-                {
-                    "film": "Incident"
-                },
-                {
-                    "film": "Instruments of a Beating Heart"
-                },
-                {
-                    "film": "The Only Girl in the Orchestra"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Film Editing",
-            "nominees": [
-                {
-                    "film": "Anora",
-                    "crew": "Jennifer Lame"
-                },
-                {
-                    "film": "The Brutalist",
-                    "crew": "Joe Walker"
-                },
-                {
-                    "film": "Conclave",
-                    "crew": "William Goldenberg"
+                    "crew": "Peter Morgan"
                 },
                 {
                     "film": "Emilia Pérez",
-                    "crew": "Juliette Welfling"
+                    "crew": "Jacques Audiard"
                 },
                 {
-                    "film": "Wicked",
-                    "crew": "Michael McCusker"
+                    "film": "Nickel Boys",
+                    "crew": "Colson Whitehead"
+                },
+                {
+                    "film": "Sing Sing",
+                    "crew": "Tony Kushner"
                 }
             ],
             "my_winner": null,
             "official_winner": null
         },
         {
-            "name": "International Feature Film",
+            "name": "Writing (Original Screenplay)",
             "nominees": [
                 {
-                    "film": "I'm Still Here"
+                    "film": "Anora",
+                    "crew": "Sean Baker"
                 },
                 {
-                    "film": "The Girl with the Needle"
+                    "film": "The Brutalist",
+                    "crew": "Brady Corbet"
                 },
                 {
-                    "film": "Emilia Pérez"
+                    "film": "A Real Pain",
+                    "crew": "Jesse Eisenberg"
                 },
                 {
-                    "film": "The Seed of the Sacred Fig"
+                    "film": "September 5",
+                    "crew": "Paul Schrader"
                 },
                 {
-                    "film": "Flow"
+                    "film": "The Substance",
+                    "crew": "Coralie Fargeat"
                 }
             ],
             "my_winner": null,
@@ -355,37 +159,184 @@
             "official_winner": null
         },
         {
-            "name": "Best Picture",
+            "name": "Costume Design",
             "nominees": [
                 {
-                    "film": "Anora"
+                    "film": "A Complete Unknown",
+                    "crew": "Mark Bridges"
                 },
                 {
-                    "film": "The Brutalist"
+                    "film": "Conclave",
+                    "crew": "Colleen Atwood"
                 },
                 {
-                    "film": "A Complete Unknown"
+                    "film": "Gladiator II",
+                    "crew": "Janty Yates"
                 },
                 {
-                    "film": "Conclave"
+                    "film": "Nosferatu",
+                    "crew": "Michael Wilkinson"
                 },
                 {
-                    "film": "Dune: Part Two"
+                    "film": "Wicked",
+                    "crew": "Catherine Martin"
+                }
+            ],
+            "my_winner": null,
+            "official_winner": null
+        },
+        {
+            "name": "Production Design",
+            "nominees": [
+                {
+                    "film": "The Brutalist",
+                    "crew": "Nathan Crowley"
+                },
+                {
+                    "film": "Conclave",
+                    "crew": "Sarah Greenwood"
+                },
+                {
+                    "film": "Dune: Part Two",
+                    "crew": "Patrice Vermette"
+                },
+                {
+                    "film": "Nosferatu",
+                    "crew": "Rick Carter"
+                },
+                {
+                    "film": "Wicked",
+                    "crew": "Catherine Martin"
+                }
+            ],
+            "my_winner": null,
+            "official_winner": null
+        },
+        {
+            "name": "Sound",
+            "nominees": [
+                {
+                    "film": "A Complete Unknown",
+                    "crew": "Mark Weingarten"
+                },
+                {
+                    "film": "Dune: Part Two",
+                    "crew": "Mac Ruth"
+                },
+                {
+                    "film": "Emilia Pérez",
+                    "crew": "Randy Thom"
+                },
+                {
+                    "film": "Wicked",
+                    "crew": "Gary Rydstrom"
+                },
+                {
+                    "film": "The Wild Robot",
+                    "crew": "Christopher Boyes"
+                }
+            ],
+            "my_winner": null,
+            "official_winner": null
+        },
+        {
+            "name": "Visual Effects",
+            "nominees": [
+                {
+                    "film": "Alien: Romulus",
+                    "crew": "Dan Glass"
+                },
+                {
+                    "film": "Better Man",
+                    "crew": "Dan Lemmon"
+                },
+                {
+                    "film": "Dune: Part Two",
+                    "crew": "Paul Lambert"
+                },
+                {
+                    "film": "Kingdom of the Planet of the Apes",
+                    "crew": "Joe Letteri"
+                },
+                {
+                    "film": "Wicked",
+                    "crew": "Dan Sudick"
+                }
+            ],
+            "my_winner": null,
+            "official_winner": null
+        },
+        {
+            "name": "Film Editing",
+            "nominees": [
+                {
+                    "film": "Anora",
+                    "crew": "Jennifer Lame"
+                },
+                {
+                    "film": "The Brutalist",
+                    "crew": "Joe Walker"
+                },
+                {
+                    "film": "Conclave",
+                    "crew": "William Goldenberg"
+                },
+                {
+                    "film": "Emilia Pérez",
+                    "crew": "Juliette Welfling"
+                },
+                {
+                    "film": "Wicked",
+                    "crew": "Michael McCusker"
+                }
+            ],
+            "my_winner": null,
+            "official_winner": null
+        },
+        {
+            "name": "Cinematography",
+            "nominees": [
+                {
+                    "film": "The Brutalist",
+                    "crew": "Hoyte van Hoytema"
+                },
+                {
+                    "film": "Dune: Part Two",
+                    "crew": "Greig Fraser"
+                },
+                {
+                    "film": "Emilia Pérez",
+                    "crew": "Benoît Debie"
+                },
+                {
+                    "film": "Maria",
+                    "crew": "Darius Khondji"
+                },
+                {
+                    "film": "Nosferatu",
+                    "crew": "Jarin Blaschke"
+                }
+            ],
+            "my_winner": null,
+            "official_winner": null
+        },
+        {
+            "name": "International Feature Film",
+            "nominees": [
+                {
+                    "film": "I'm Still Here"
+                },
+                {
+                    "film": "The Girl with the Needle"
                 },
                 {
                     "film": "Emilia Pérez"
                 },
                 {
-                    "film": "I'm Still Here"
+                    "film": "The Seed of the Sacred Fig"
                 },
                 {
-                    "film": "Nickel Boys"
-                },
-                {
-                    "film": "The Substance"
-                },
-                {
-                    "film": "Wicked"
+                    "film": "Flow"
                 }
             ],
             "my_winner": null,
@@ -451,157 +402,121 @@
             "official_winner": null
         },
         {
-            "name": "Production Design",
+            "name": "Actor in a Leading Role",
             "nominees": [
                 {
-                    "film": "The Brutalist",
-                    "crew": "Nathan Crowley"
+                    "actor": "Adrien Brody",
+                    "film": "The Brutalist"
                 },
                 {
-                    "film": "Conclave",
-                    "crew": "Sarah Greenwood"
+                    "actor": "Timothée Chalamet",
+                    "film": "A Complete Unknown"
                 },
                 {
-                    "film": "Dune: Part Two",
-                    "crew": "Patrice Vermette"
+                    "actor": "Colman Domingo",
+                    "film": "Sing Sing"
                 },
                 {
-                    "film": "Nosferatu",
-                    "crew": "Rick Carter"
+                    "actor": "Ralph Fiennes",
+                    "film": "Conclave"
                 },
                 {
-                    "film": "Wicked",
-                    "crew": "Catherine Martin"
+                    "actor": "Sebastian Stan",
+                    "film": "The Apprentice"
+                }
+            ],
+            "my_winner": {
+                "actor": "Ralph Fiennes",
+                "film": "Conclave"
+            },
+            "official_winner": null
+        },
+        {
+            "name": "Actress in a Leading Role",
+            "nominees": [
+                {
+                    "actor": "Cynthia Erivo",
+                    "film": "Wicked"
+                },
+                {
+                    "actor": "Karla Sofía Gascón",
+                    "film": "Emilia Pérez"
+                },
+                {
+                    "actor": "Mikey Madison",
+                    "film": "Anora"
+                },
+                {
+                    "actor": "Demi Moore",
+                    "film": "The Substance"
+                },
+                {
+                    "actor": "Fernanda Torres",
+                    "film": "I'm Still Here"
                 }
             ],
             "my_winner": null,
             "official_winner": null
         },
         {
-            "name": "Live Action Short Film",
+            "name": "Directing",
             "nominees": [
                 {
-                    "film": "A Lien"
+                    "actor": "Sean Baker",
+                    "film": "Anora"
                 },
                 {
-                    "film": "Anuja"
+                    "actor": "Brady Corbet",
+                    "film": "The Brutalist"
                 },
                 {
-                    "film": "I'm Not a Robot"
+                    "actor": "James Mangold",
+                    "film": "A Complete Unknown"
                 },
                 {
-                    "film": "The Last Ranger"
+                    "actor": "Jacques Audiard",
+                    "film": "Emilia Pérez"
                 },
                 {
-                    "film": "The Man Who Could Not Remain Silent"
+                    "actor": "Coralie Fargeat",
+                    "film": "The Substance"
                 }
             ],
             "my_winner": null,
             "official_winner": null
         },
         {
-            "name": "Sound",
+            "name": "Best Picture",
             "nominees": [
                 {
-                    "film": "A Complete Unknown",
-                    "crew": "Mark Weingarten"
+                    "film": "Anora"
                 },
                 {
-                    "film": "Dune: Part Two",
-                    "crew": "Mac Ruth"
+                    "film": "The Brutalist"
                 },
                 {
-                    "film": "Emilia Pérez",
-                    "crew": "Randy Thom"
+                    "film": "A Complete Unknown"
                 },
                 {
-                    "film": "Wicked",
-                    "crew": "Gary Rydstrom"
+                    "film": "Conclave"
                 },
                 {
-                    "film": "The Wild Robot",
-                    "crew": "Christopher Boyes"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Visual Effects",
-            "nominees": [
-                {
-                    "film": "Alien: Romulus",
-                    "crew": "Dan Glass"
+                    "film": "Dune: Part Two"
                 },
                 {
-                    "film": "Better Man",
-                    "crew": "Dan Lemmon"
+                    "film": "Emilia Pérez"
                 },
                 {
-                    "film": "Dune: Part Two",
-                    "crew": "Paul Lambert"
+                    "film": "I'm Still Here"
                 },
                 {
-                    "film": "Kingdom of the Planet of the Apes",
-                    "crew": "Joe Letteri"
+                    "film": "Nickel Boys"
                 },
                 {
-                    "film": "Wicked",
-                    "crew": "Dan Sudick"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Writing (Adapted Screenplay)",
-            "nominees": [
-                {
-                    "film": "A Complete Unknown",
-                    "crew": "Eric Roth"
+                    "film": "The Substance"
                 },
                 {
-                    "film": "Conclave",
-                    "crew": "Peter Morgan"
-                },
-                {
-                    "film": "Emilia Pérez",
-                    "crew": "Jacques Audiard"
-                },
-                {
-                    "film": "Nickel Boys",
-                    "crew": "Colson Whitehead"
-                },
-                {
-                    "film": "Sing Sing",
-                    "crew": "Tony Kushner"
-                }
-            ],
-            "my_winner": null,
-            "official_winner": null
-        },
-        {
-            "name": "Writing (Original Screenplay)",
-            "nominees": [
-                {
-                    "film": "Anora",
-                    "crew": "Sean Baker"
-                },
-                {
-                    "film": "The Brutalist",
-                    "crew": "Brady Corbet"
-                },
-                {
-                    "film": "A Real Pain",
-                    "crew": "Jesse Eisenberg"
-                },
-                {
-                    "film": "September 5",
-                    "crew": "Paul Schrader"
-                },
-                {
-                    "film": "The Substance",
-                    "crew": "Coralie Fargeat"
+                    "film": "Wicked"
                 }
             ],
             "my_winner": null,

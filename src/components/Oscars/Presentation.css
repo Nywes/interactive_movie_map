@@ -166,6 +166,7 @@ body {
   justify-content: space-between;
   gap: 2vh;
   padding: 2vh 0;
+  position: relative;
 }
 
 .category-title {
@@ -200,17 +201,33 @@ body {
   padding: 16px;
   margin: 0 auto;
   flex: 1;
+  position: relative;
+}
+
+/* Special layout for Best Picture category */
+.best-picture-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2vh 3vw;
+  width: 100%;
+  max-width: min(1000px, 90vw);
+  padding: 16px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.best-picture-container .nominee-title {
+  font-size: min(2.5vw, 1.1rem);
 }
 
 /* Cartes des nominés */
 .nominee-card {
   border-radius: 12px;
-  padding: 2vh 4vw;
   height: min(12vh, 90px);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   transition: all 0.3s ease;
   position: relative;
   background: var(--oscar-white);
@@ -233,6 +250,39 @@ body {
 
 .winner-card:hover {
   box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+}
+
+.nominee-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 2vh 4vw;
+}
+
+.nominee-image {
+  width: min(10vh, 70px);
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.oscar-statuette {
+  position: absolute;
+  right: min(10vh, 70px);
+  height: 75%;
+  object-fit: contain;
+}
+
+.winner-card .nominee-image {
+  border-color: var(--oscar-gold);
+}
+
+.not-seen-card .nominee-image {
+  opacity: 0.5;
+  border-color: var(--oscar-charcoal);
 }
 
 .nominee-title {
@@ -304,7 +354,35 @@ html {
 
   .nominee-card {
     height: min(10vh, 80px);
+  }
+
+  .nominee-info {
     padding: 1.5vh 5vw;
+  }
+
+  .nominee-image {
+    width: min(8vh, 60px);
+    height: 100%;
+  }
+
+  .oscar-statuette {
+    position: absolute;
+    right: min(8vh, 60px);
+    height: 75%;
+    object-fit: contain;
+  }
+
+  .best-picture-container {
+    max-width: min(600px, 90vw);
+    gap: 1.2vh;
+  }
+
+  .best-picture-container .nominee-card {
+    height: min(9vh, 70px);
+  }
+
+  .best-picture-container .nominee-title {
+    font-size: min(3.5vw, 1.1rem);
   }
 }
 
@@ -326,7 +404,10 @@ html {
 
   .nominee-card {
     height: min(9vh, 70px);
-    padding: 1.2vh 5vw;
+  }
+
+  .nominee-info {
+    padding: 1.5vh 5vw;
   }
 
   .nominee-title {
@@ -341,6 +422,18 @@ html {
     padding: 1.2vh 5vw;
     font-size: 3.5vw;
     min-width: 50vw;
+  }
+
+  .nominee-image {
+    width: min(8vh, 60px);
+    height: 100%;
+  }
+
+  .oscar-statuette {
+    position: absolute;
+    right: min(8vh, 60px);
+    height: 75%;
+    object-fit: contain;
   }
 }
 
@@ -383,7 +476,7 @@ html {
 .not-seen-indicator {
   position: absolute;
   top: 50%;
-  right: 1rem;
+  right: min(8vh, 70px);
   transform: translateY(-50%);
   font-size: 0.8rem;
   color: var(--oscar-charcoal);

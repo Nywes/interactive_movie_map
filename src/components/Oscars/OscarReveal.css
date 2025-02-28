@@ -1,0 +1,99 @@
+.oscar-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.oscar-reveal__wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.oscar-reveal__panel {
+  display: flex;
+  align-items: center;
+  background: var(--oscar-gold);
+  color: var(--oscar-white);
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.oscar-reveal__panel--left {
+  left: 0;
+  justify-content: flex-end;
+  transform: translateX(-100%);
+}
+
+.oscar-reveal__panel--right {
+  right: 0;
+  justify-content: flex-start;
+  transform: translateX(100%);
+}
+
+/* Initial state - curtains off screen */
+.oscar-reveal.initial .oscar-reveal__panel--left {
+  transform: translateX(-100%);
+}
+
+.oscar-reveal.initial .oscar-reveal__panel--right {
+  transform: translateX(100%);
+}
+
+/* Closing state - curtains closed */
+.oscar-reveal.closing .oscar-reveal__panel--left,
+.oscar-reveal.showing-text .oscar-reveal__panel--left {
+  transform: translateX(0);
+}
+
+.oscar-reveal.closing .oscar-reveal__panel--right,
+.oscar-reveal.showing-text .oscar-reveal__panel--right {
+  transform: translateX(0);
+}
+
+/* Opening state - curtains moving off screen */
+.oscar-reveal.opening .oscar-reveal__panel--left {
+  transform: translateX(-100%);
+}
+
+.oscar-reveal.opening .oscar-reveal__panel--right {
+  transform: translateX(100%);
+}
+
+.oscar-reveal__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.oscar-reveal__text {
+  font-family: 'Futura PT Medium', 'Futura', sans-serif;
+  font-size: 2.5rem;
+  color: var(--oscar-white);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.oscar-reveal__text.visible {
+  opacity: 1;
+  transform: scale(1);
+} 

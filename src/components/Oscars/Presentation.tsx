@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './Presentation.css';
 import oscarsDataJson from './oscars-data.json';
+import { OscarReveal } from './OscarReveal';
 
 // Définir les types pour les nominés et les sections
 type Nominee = {
@@ -27,16 +28,122 @@ export const Presentation = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState(0);
   const [highlightedWinners, setHighlightedWinners] = useState<{ [key: string]: boolean }>({});
+  const [showingReveal, setShowingReveal] = useState<string | null>(null);
+  const [animatedCategories, setAnimatedCategories] = useState<{ [key: string]: boolean }>({});
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [validImagePaths, setValidImagePaths] = useState<{ [key: string]: boolean }>({});
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
+  const scrollTimeout = useRef<number | undefined>(undefined);
 
   // Use the imported data
   const oscarsData: OscarsData = oscarsDataJson;
   const { year, categories } = oscarsData;
 
+  const checkImageExists = (imagePath: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = imagePath;
+    });
+  };
+
+  const getActorImagePath = async (actorName: string | undefined) => {
+    if (!actorName) return undefined;
+
+    // If we've already checked this actor, return from cache
+    if (Object.prototype.hasOwnProperty.call(validImagePaths, actorName)) {
+      return validImagePaths[actorName]
+        ? `/actors/${actorName
+            .replace(/\s+/g, '-')
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')}.jpg`
+        : undefined;
+    }
+
+    // Convert actor name to filename format
+    const fileName = actorName
+      .replace(/\s+/g, '-')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+    const imagePath = `/actors/${fileName}.jpg`;
+
+    // Check if image exists
+    const exists = await checkImageExists(imagePath);
+
+    // Cache the result
+    setValidImagePaths((prev) => ({
+      ...prev,
+      [actorName]: exists,
+    }));
+
+    return exists ? imagePath : undefined;
+  };
+
+  // Preload all actor images on component mount
+  useEffect(() => {
+    const preloadActorImages = async () => {
+      const actorNames = new Set<string>();
+      categories.forEach((category) => {
+        category.nominees.forEach((nominee) => {
+          if (nominee.actor) {
+            actorNames.add(nominee.actor);
+          }
+        });
+      });
+
+      const results = await Promise.all(
+        Array.from(actorNames).map(async (actorName) => {
+          const path = await getActorImagePath(actorName);
+          return [actorName, !!path] as [string, boolean];
+        })
+      );
+
+      setValidImagePaths(Object.fromEntries(results));
+    };
+
+    preloadActorImages();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories]);
+
+  // Modified version of the component that uses the cached image paths
+  const getActorImagePathSync = (actorName: string | undefined) => {
+    if (!actorName || !validImagePaths[actorName]) return undefined;
+
+    return `/actors/${actorName
+      .replace(/\s+/g, '-')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')}.jpg`;
+  };
+
   // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      const currentScrollY = window.scrollY;
+      const scrollDiff = Math.abs(currentScrollY - lastScrollY);
+
+      // If we're in the middle of an animation and the scroll is significant (> 50px)
+      if (isAnimating && scrollDiff > 50) {
+        // Cancel the animation smoothly
+        if (showingReveal) {
+          handleRevealComplete();
+        }
+      }
+
+      setLastScrollY(currentScrollY);
+      setScrollY(currentScrollY);
+
+      // Clear existing timeout
+      if (scrollTimeout.current) {
+        window.clearTimeout(scrollTimeout.current);
+      }
+
+      // Set new timeout to update scroll state after scrolling stops
+      scrollTimeout.current = window.setTimeout(() => {
+        setLastScrollY(window.scrollY);
+      }, 150);
     };
 
     // Add scroll event listener
@@ -45,8 +152,11 @@ export const Presentation = () => {
     // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) {
+        window.clearTimeout(scrollTimeout.current);
+      }
     };
-  }, []);
+  }, [lastScrollY, isAnimating, showingReveal]);
 
   // Effet pour changer de section en fonction du défilement
   useEffect(() => {
@@ -77,10 +187,32 @@ export const Presentation = () => {
   };
 
   const revealWinner = (categoryName: string) => {
-    setHighlightedWinners((prev) => ({
-      ...prev,
-      [categoryName]: true,
-    }));
+    // Only show reveal animation if it hasn't been shown before
+    if (!animatedCategories[categoryName]) {
+      setShowingReveal(categoryName);
+      setIsAnimating(true);
+      setAnimatedCategories((prev) => ({
+        ...prev,
+        [categoryName]: true,
+      }));
+    } else {
+      // If already animated, just update the highlighted winners immediately
+      setHighlightedWinners((prev) => ({
+        ...prev,
+        [categoryName]: true,
+      }));
+    }
+  };
+
+  const handleRevealComplete = () => {
+    if (showingReveal) {
+      setHighlightedWinners((prev) => ({
+        ...prev,
+        [showingReveal]: true,
+      }));
+      setShowingReveal(null);
+      setIsAnimating(false);
+    }
   };
 
   const isWinner = (categoryName: string, nominee: Nominee) => {
@@ -112,7 +244,21 @@ export const Presentation = () => {
   };
 
   const isNotSeen = (film: string): boolean => {
-    return ['Wicked', 'A Real Pain', 'The Apprentice'].includes(film);
+    return [
+      'A Real Pain',
+      'The Apprentice',
+      'Sing Sing',
+      'Gladiator II',
+      'A Different Man',
+      'Elton John: Never Too Late',
+      'The Six Triple Eight',
+      'Better Man',
+      'September 5',
+      'The Girl with the Needle',
+      'The Seed of the Sacred Fig',
+      'Memoir of a Snail',
+      'Wallace & Gromit',
+    ].includes(film);
   };
 
   return (
@@ -144,17 +290,55 @@ export const Presentation = () => {
           <div className="category-content">
             <h2 className="category-title">{category.name}</h2>
 
-            <div className="nominees-container">
+            <div
+              className={`${
+                category.name === 'Best Picture' ? 'best-picture-container' : 'nominees-container'
+              }`}
+            >
               {category.nominees.map((nominee, index) => (
                 <div
                   key={index}
                   className={`nominee-card ${
                     isWinner(category.name, nominee) ? 'winner-card' : ''
-                  } ${isNotSeen(nominee.film) ? 'not-seen-card' : ''}`}
+                  } ${isNotSeen(nominee.film) ? 'not-seen-card' : ''} ${
+                    highlightedWinners[category.name] && !isWinner(category.name, nominee)
+                      ? 'losing-nominee'
+                      : ''
+                  }`}
                 >
-                  <div className="nominee-title">{getNomineeTitle(nominee)}</div>
-                  <div className="nominee-description">{getNomineeDescription(nominee)}</div>
-                  {isNotSeen(nominee.film) && <div className="not-seen-indicator">NOT SEEN</div>}
+                  <div className="nominee-info">
+                    <div className="nominee-title">{getNomineeTitle(nominee)}</div>
+                    <div className="nominee-description">{getNomineeDescription(nominee)}</div>
+                  </div>
+                  {isNotSeen(nominee.film) && (
+                    <div
+                      className="not-seen-indicator"
+                      style={{
+                        right: getActorImagePathSync(nominee.actor)
+                          ? 'min(8vh, 70px)'
+                          : 'min(8vh, 10px)',
+                      }}
+                    >
+                      NOT SEEN
+                    </div>
+                  )}
+                  {isWinner(category.name, nominee) && (
+                    <img
+                      src="/Oscar-Statuette-Logo.png"
+                      alt="Oscar Statuette"
+                      className="oscar-statuette"
+                    />
+                  )}
+                  {getActorImagePathSync(nominee.actor) && (
+                    <img
+                      src={getActorImagePathSync(nominee.actor)}
+                      alt={nominee.actor}
+                      className="nominee-image"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -166,6 +350,10 @@ export const Presentation = () => {
             >
               Révéler mon choix
             </button>
+
+            {showingReveal === category.name && (
+              <OscarReveal isActive={true} onAnimationComplete={handleRevealComplete} />
+            )}
           </div>
         </section>
       ))}
