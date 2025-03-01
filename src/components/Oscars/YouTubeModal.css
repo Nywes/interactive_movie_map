@@ -1,0 +1,40 @@
+.youtube-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.youtube-modal-content {
+  position: relative;
+  width: 90vw;
+  height: 50.625vw; /* 16:9 aspect ratio */
+  max-width: 1200px;
+  max-height: 675px;
+  background: black;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.youtube-modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.youtube-modal-close:hover {
+  opacity: 0.8;
+} 

@@ -18,14 +18,18 @@
                 },
                 {
                     "actor": "Guy Pearce",
-                    "film": "The Brutalist"
+                    "film": "The Brutalist",
+                    "trailer": "https://www.youtube.com/watch?v=cCnz8l6ev7k&t=15s&ab_channel=UniversalPicturesFrance"
                 },
                 {
                     "actor": "Jeremy Strong",
                     "film": "The Apprentice"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "actor": "Yura Borisov",
+                "film": "Anora"
+            },
             "official_winner": null
         },
         {
@@ -52,7 +56,10 @@
                     "film": "Emilia Pérez"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "actor": "Monica Barbaro",
+                "film": "A Complete Unknown"
+            },
             "official_winner": null
         },
         {
@@ -74,7 +81,9 @@
                     "film": "The Wild Robot"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Flow"
+            },
             "official_winner": null
         },
         {
@@ -101,7 +110,10 @@
                     "crew": "Tony Kushner"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "A Complete Unknown",
+                "crew": "Eric Roth"
+            },
             "official_winner": null
         },
         {
@@ -128,7 +140,10 @@
                     "crew": "Coralie Fargeat"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "The Brutalist",
+                "crew": "Brady Corbet"
+            },
             "official_winner": null
         },
         {
@@ -155,7 +170,10 @@
                     "crew": "Morag Ross"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "The Substance",
+                "crew": "Naomi Donne"
+            },
             "official_winner": null
         },
         {
@@ -182,7 +200,10 @@
                     "crew": "Catherine Martin"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Wicked",
+                "crew": "Catherine Martin"
+            },
             "official_winner": null
         },
         {
@@ -209,7 +230,10 @@
                     "crew": "Catherine Martin"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Conclave",
+                "crew": "Sarah Greenwood"
+            },
             "official_winner": null
         },
         {
@@ -236,14 +260,17 @@
                     "crew": "Christopher Boyes"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Dune Part Two",
+                "crew": "Mac Ruth"
+            },
             "official_winner": null
         },
         {
             "name": "Visual Effects",
             "nominees": [
                 {
-                    "film": "Alien: Romulus",
+                    "film": "Alien Romulus",
                     "crew": "Dan Glass"
                 },
                 {
@@ -263,7 +290,10 @@
                     "crew": "Dan Sudick"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Dune Part Two",
+                "crew": "Paul Lambert"
+            },
             "official_winner": null
         },
         {
@@ -290,7 +320,10 @@
                     "crew": "Michael McCusker"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Anora",
+                "crew": "Jennifer Lame"
+            },
             "official_winner": null
         },
         {
@@ -317,7 +350,10 @@
                     "crew": "Jarin Blaschke"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "Dune Part Two",
+                "crew": "Greig Fraser"
+            },
             "official_winner": null
         },
         {
@@ -339,7 +375,9 @@
                     "film": "Flow"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "I'm Still Here"
+            },
             "official_winner": null
         },
         {
@@ -366,39 +404,40 @@
                     "crew": "Michael Giacchino"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "The Brutalist",
+                "crew": "Hans Zimmer"
+            },
             "official_winner": null
         },
         {
             "name": "Music (Original Song)",
             "nominees": [
                 {
-                    "actor": "El Mal",
-                    "film": "Emilia Pérez",
-                    "crew": "Lin-Manuel Miranda"
+                    "film": "El Mal",
+                    "crew": "Lin-Manuel Miranda - Emilia Pérez"
                 },
                 {
-                    "actor": "The Journey",
-                    "film": "The Six Triple Eight",
-                    "crew": "Diane Warren"
+                    "film": "The Journey",
+                    "crew": "Diane Warren - The Six Triple Eight"
                 },
                 {
-                    "actor": "Like a Bird",
-                    "film": "Sing Sing",
-                    "crew": "Jack Antonoff"
+                    "film": "Like a Bird",
+                    "crew": "Jack Antonoff - Sing Sing"
                 },
                 {
-                    "actor": "Mi Camino",
-                    "film": "Emilia Pérez",
-                    "crew": "Lin-Manuel Miranda"
+                    "film": "Mi Camino",
+                    "crew": "Lin-Manuel Miranda - Emilia Pérez"
                 },
                 {
-                    "actor": "Never Too Late",
-                    "film": "Elton John: Never Too Late",
-                    "crew": "Elton John"
+                    "film": "Never Too Late",
+                    "crew": "Elton John - Elton John: Never Too Late"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "film": "El Mal",
+                "crew": "Lin-Manuel Miranda - Emilia Pérez"
+            },
             "official_winner": null
         },
         {
@@ -485,41 +524,54 @@
                     "film": "The Substance"
                 }
             ],
-            "my_winner": null,
+            "my_winner": {
+                "actor": "Coralie Fargeat",
+                "film": "The Substance"
+            },
             "official_winner": null
         },
         {
             "name": "Best Picture",
             "nominees": [
                 {
-                    "film": "Anora"
+                    "film": "Anora",
+                    "trailer": "https://www.youtube.com/watch?v=p1HxTmV5i7c&ab_channel=NEON"
                 },
                 {
-                    "film": "The Brutalist"
+                    "film": "The Brutalist",
+                    "trailer": "https://www.youtube.com/watch?v=GdRXPAHIEW4&t=23s&ab_channel=A24"
                 },
                 {
-                    "film": "A Complete Unknown"
+                    "film": "A Complete Unknown",
+                    "trailer": "https://www.youtube.com/watch?v=FdV-Cs5o8mc&ab_channel=SearchlightPictures"
                 },
                 {
-                    "film": "Conclave"
+                    "film": "Conclave",
+                    "trailer": "https://www.youtube.com/watch?v=t915aZmyEBg&ab_channel=FocusFeatures"
                 },
                 {
-                    "film": "Dune Part Two"
+                    "film": "Dune Part Two",
+                    "trailer": "https://www.youtube.com/watch?v=Way9Dexny3w&ab_channel=WarnerBros"
                 },
                 {
-                    "film": "Emilia Pérez"
+                    "film": "Emilia Pérez",
+                    "trailer": "https://www.youtube.com/watch?v=lwH9f1jmkBc&ab_channel=Pathe"
                 },
                 {
-                    "film": "I'm Still Here"
+                    "film": "I'm Still Here",
+                    "trailer": "https://www.youtube.com/watch?v=gDunV808Yf4&t=7s&ab_channel=SonyPicturesClassics"
                 },
                 {
-                    "film": "Nickel Boys"
+                    "film": "Nickel Boys",
+                    "trailer": "https://www.youtube.com/watch?v=-2qZ429rUZw&t=3s&ab_channel=AmazonMGMStudios"
                 },
                 {
-                    "film": "The Substance"
+                    "film": "The Substance",
+                    "trailer": "https://www.youtube.com/watch?v=LNlrGhBpYjc&ab_channel=MUBI"
                 },
                 {
-                    "film": "Wicked"
+                    "film": "Wicked",
+                    "trailer": "https://www.youtube.com/watch?v=6COmYeLsz4c&ab_channel=UniversalPictures"
                 }
             ],
             "my_winner": {

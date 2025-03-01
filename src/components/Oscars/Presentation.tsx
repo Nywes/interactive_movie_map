@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import './Presentation.css';
 import oscarsDataJson from './oscars-data.json';
 import { OscarReveal } from './OscarReveal';
+import { YouTubeModal } from './YouTubeModal';
 
 // Définir les types pour les nominés et les sections
 type Nominee = {
@@ -10,6 +11,7 @@ type Nominee = {
   film: string;
   crew?: string;
   notSeen?: boolean;
+  trailer?: string;
 };
 
 type Category = {
@@ -35,6 +37,7 @@ export const Presentation = () => {
   const [validImagePaths, setValidImagePaths] = useState<{ [key: string]: boolean }>({});
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const scrollTimeout = useRef<number | undefined>(undefined);
+  const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   // Use the imported data
   const oscarsData: OscarsData = oscarsDataJson;
@@ -160,6 +163,7 @@ export const Presentation = () => {
         window.clearTimeout(scrollTimeout.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastScrollY, isAnimating, showingReveal]);
 
   // Effet pour changer de section en fonction du défilement
@@ -262,7 +266,53 @@ export const Presentation = () => {
       'The Seed of the Sacred Fig',
       'Memoir of a Snail',
       'Wallace & Gromit',
+      'Like a Bird',
+      'Never Too Late',
+      'The Journey',
     ].includes(film);
+  };
+
+  // Function to search for movie trailer on YouTube
+  const searchTrailer = async (movieTitle: string) => {
+    const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+    if (!apiKey) {
+      console.error('YouTube API key is not configured');
+      return null;
+    }
+
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${encodeURIComponent(
+          movieTitle + ' trailer official'
+        )}&type=video&key=${apiKey}`
+      );
+      const data = await response.json();
+      if (data.items && data.items.length > 0) {
+        return data.items[0].id.videoId;
+      }
+      return null;
+    } catch (error) {
+      console.error('Error searching YouTube:', error);
+      return null;
+    }
+  };
+
+  // Handle nominee card click
+  const handleNomineeClick = async (nominee: Nominee) => {
+    if (nominee.trailer) {
+      // Extract video ID from YouTube URL
+      const videoId = nominee.trailer.match(
+        /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+      )?.[1];
+      if (videoId) {
+        setSelectedVideoId(videoId);
+        return;
+      }
+    }
+
+    // Fallback to search if no trailer URL or invalid URL
+    const videoId = await searchTrailer(nominee.film);
+    setSelectedVideoId(videoId);
   };
 
   return (
@@ -308,7 +358,8 @@ export const Presentation = () => {
                     highlightedWinners[category.name] && !isWinner(category.name, nominee)
                       ? 'losing-nominee'
                       : ''
-                  }`}
+                  } ${!nominee.actor ? 'with-film-image' : ''}`}
+                  onClick={() => handleNomineeClick(nominee)}
                 >
                   <div className="nominee-info">
                     <div className="nominee-title">{getNomineeTitle(nominee)}</div>
@@ -318,9 +369,11 @@ export const Presentation = () => {
                     <div
                       className="not-seen-indicator"
                       style={{
-                        right: getActorImagePathSync(nominee.actor)
-                          ? 'min(8vh, 70px)'
-                          : 'min(8vh, 10px)',
+                        position: 'absolute',
+                        top: '4px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        right: 'auto',
                       }}
                     >
                       NOT SEEN
@@ -330,7 +383,7 @@ export const Presentation = () => {
                     <img
                       src="/Oscar-Statuette-Logo.png"
                       alt="Oscar Statuette"
-                      className="oscar-statuette"
+                      className={`oscar-statuette ${nominee.actor ? 'with-actor' : 'with-film'}`}
                     />
                   )}
                   {getActorImagePathSync(nominee.actor) && (
@@ -362,7 +415,7 @@ export const Presentation = () => {
               onClick={() => revealWinner(category.name)}
               disabled={!category.my_winner}
             >
-              Révéler mon choix
+              Reaveal my choice
             </button>
 
             {showingReveal === category.name && (
@@ -371,6 +424,9 @@ export const Presentation = () => {
           </div>
         </section>
       ))}
+
+      {/* Add YouTube Modal */}
+      <YouTubeModal videoId={selectedVideoId} onClose={() => setSelectedVideoId(null)} />
 
       <footer className="oscars-footer">
         <p>© {year} Ma Présentation des Oscars</p>
