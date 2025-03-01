@@ -49,63 +49,48 @@ export const Presentation = () => {
     });
   };
 
-  const getActorImagePath = async (actorName: string | undefined) => {
-    if (!actorName) return undefined;
-
-    // If we've already checked this actor, return from cache
-    if (Object.prototype.hasOwnProperty.call(validImagePaths, actorName)) {
-      return validImagePaths[actorName]
-        ? `/actors/${actorName
-            .replace(/\s+/g, '-')
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')}.jpg`
-        : undefined;
-    }
-
-    // Convert actor name to filename format
-    const fileName = actorName
-      .replace(/\s+/g, '-')
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '');
-
-    const imagePath = `/actors/${fileName}.jpg`;
-
-    // Check if image exists
-    const exists = await checkImageExists(imagePath);
-
-    // Cache the result
-    setValidImagePaths((prev) => ({
-      ...prev,
-      [actorName]: exists,
-    }));
-
-    return exists ? imagePath : undefined;
-  };
-
-  // Preload all actor images on component mount
+  // Preload all images on component mount
   useEffect(() => {
-    const preloadActorImages = async () => {
+    const preloadImages = async () => {
       const actorNames = new Set<string>();
+      const filmNames = new Set<string>();
+
       categories.forEach((category) => {
         category.nominees.forEach((nominee) => {
           if (nominee.actor) {
             actorNames.add(nominee.actor);
           }
+          if (nominee.film) {
+            filmNames.add(nominee.film);
+          }
         });
       });
 
-      const results = await Promise.all(
-        Array.from(actorNames).map(async (actorName) => {
-          const path = await getActorImagePath(actorName);
-          return [actorName, !!path] as [string, boolean];
-        })
-      );
+      const results = await Promise.all([
+        ...Array.from(actorNames).map(async (actorName) => {
+          const path = await checkImageExists(
+            `/actors/${actorName
+              .replace(/\s+/g, '-')
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')}.jpg`
+          );
+          return [actorName, path] as [string, boolean];
+        }),
+        ...Array.from(filmNames).map(async (filmName) => {
+          const path = await checkImageExists(
+            `/films/${filmName
+              .replace(/\s+/g, '-')
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')}.jpg`
+          );
+          return [filmName, path] as [string, boolean];
+        }),
+      ]);
 
       setValidImagePaths(Object.fromEntries(results));
     };
 
-    preloadActorImages();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    preloadImages();
   }, [categories]);
 
   // Modified version of the component that uses the cached image paths
@@ -113,6 +98,25 @@ export const Presentation = () => {
     if (!actorName || !validImagePaths[actorName]) return undefined;
 
     return `/actors/${actorName
+      .replace(/\s+/g, '-')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')}.jpg`;
+  };
+
+  // Modified version of the component that uses the cached image paths
+  const getFilmImagePathSync = (filmName: string | undefined) => {
+    console.log(filmName);
+    if (!filmName || !validImagePaths[filmName]) return undefined;
+
+    console.log(filmName);
+    console.log(
+      `/films/${filmName
+        .replace(/\s+/g, '-')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')}.jpg`
+    );
+
+    return `/films/${filmName
       .replace(/\s+/g, '-')
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')}.jpg`;
@@ -334,6 +338,16 @@ export const Presentation = () => {
                       src={getActorImagePathSync(nominee.actor)}
                       alt={nominee.actor}
                       className="nominee-image"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
+                  )}
+                  {!nominee.actor && getFilmImagePathSync(nominee.film) && (
+                    <img
+                      src={getFilmImagePathSync(nominee.film)}
+                      alt={nominee.film}
+                      className="nominee-image film-image"
                       onError={(e) => {
                         (e.target as HTMLImageElement).style.display = 'none';
                       }}

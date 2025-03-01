@@ -18,7 +18,7 @@
 .oscar-reveal__panel {
   display: flex;
   align-items: center;
-  background: var(--oscar-gold);
+  background: var(--oscar-red);
   color: var(--oscar-white);
   position: absolute;
   width: 50%;

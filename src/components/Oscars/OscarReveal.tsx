@@ -63,7 +63,7 @@ export const OscarReveal = ({ isActive, onAnimationComplete }: OscarRevealProps)
         <div className="oscar-reveal__panel oscar-reveal__panel--right" />
         <div className="oscar-reveal__content">
           <div className={`oscar-reveal__text ${showText ? 'visible' : ''}`}>
-            And the Oscar goes to...
+            And my Oscar goes to...
           </div>
         </div>
       </div>

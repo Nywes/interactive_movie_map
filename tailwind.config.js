@@ -4,10 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'oscar-gold': '#d4af37',
-        'oscar-dark-gold': '#b8860b',
+        'oscar-gold': '#D6BB6E',
+        'oscar-dark-gold': '#B69F66',
         'oscar-black': '#111111',
         'oscar-white': '#ffffff',
+        'oscar-red': '#801B1D',
       },
       fontFamily: {
         'futura-pt': ['Futura PT Light Book', 'Futura', 'sans-serif'],

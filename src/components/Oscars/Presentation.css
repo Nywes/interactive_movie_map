@@ -243,13 +243,50 @@ body {
 /* Style spécial pour la carte gagnante */
 .winner-card {
   background: var(--oscar-white);
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
   z-index: 10;
-  border: 1px solid var(--oscar-gold);
+  position: relative;
+  border: none !important;
+}
+
+.winner-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(
+    to right,
+    var(--oscar-gold) 20%,
+    var(--oscar-dark-gold) 40%,
+    #ffd700 50%,
+    var(--oscar-dark-gold) 55%,
+    var(--oscar-gold) 70%,
+    var(--oscar-gold) 100%
+  );
+  background-size: 200% auto;
+  animation: borderRotate 3s linear infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes borderRotate {
+  0% {
+    background-position: 0 center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 .winner-card:hover {
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
 .nominee-info {
@@ -267,6 +304,13 @@ body {
   object-fit: cover;
   margin-left: 1rem;
   transition: all 0.3s ease;
+}
+
+.nominee-image.film-image {
+  width: calc(min(12vh, 90px) * 0.667);
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .oscar-statuette {
@@ -384,6 +428,11 @@ html {
   .best-picture-container .nominee-title {
     font-size: min(3.5vw, 1.1rem);
   }
+
+  .nominee-image.film-image {
+    width: calc(min(10vh, 80px) * 0.6);
+    height: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -434,6 +483,11 @@ html {
     right: min(8vh, 60px);
     height: 75%;
     object-fit: contain;
+  }
+
+  .nominee-image.film-image {
+    width: calc(min(9vh, 70px) * 0.667);
+    height: 100%;
   }
 }
 
