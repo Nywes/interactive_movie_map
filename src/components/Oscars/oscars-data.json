@@ -6,23 +6,43 @@
             "nominees": [
                 {
                     "actor": "Yura Borisov",
-                    "film": "Anora"
+                    "film": "Anora",
+                    "photos": [
+                        "Yura-Borisov.jpg",
+                        "Yura-Borisov-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Kieran Culkin",
-                    "film": "A Real Pain"
+                    "film": "A Real Pain",
+                    "photos": [
+                        "Kieran-Culkin.jpg",
+                        "Kieran-Culkin-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Edward Norton",
-                    "film": "A Complete Unknown"
+                    "film": "A Complete Unknown",
+                    "photos": [
+                        "Edward-Norton.jpg",
+                        "Edward-Norton-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Guy Pearce",
-                    "film": "The Brutalist"
+                    "film": "The Brutalist",
+                    "photos": [
+                        "Guy-Pearce.jpg",
+                        "Guy-Pearce-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Jeremy Strong",
-                    "film": "The Apprentice"
+                    "film": "The Apprentice",
+                    "photos": [
+                        "Jeremy-Strong.jpg",
+                        "Jeremy-Strong-1.jpg"
+                    ]
                 }
             ],
             "my_winner": {
@@ -36,23 +56,43 @@
             "nominees": [
                 {
                     "actor": "Monica Barbaro",
-                    "film": "A Complete Unknown"
+                    "film": "A Complete Unknown",
+                    "photos": [
+                        "Monica-Barbaro.jpg",
+                        "Monica-Barbaro-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Ariana Grande",
-                    "film": "Wicked"
+                    "film": "Wicked",
+                    "photos": [
+                        "Ariana-Grande.jpg",
+                        "Ariana-Grande-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Felicity Jones",
-                    "film": "The Brutalist"
+                    "film": "The Brutalist",
+                    "photos": [
+                        "Felicity-Jones.jpg",
+                        "Felicity-Jones-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Isabella Rossellini",
-                    "film": "Conclave"
+                    "film": "Conclave",
+                    "photos": [
+                        "Isabella-Rossellini.jpg",
+                        "Isabella-Rossellini-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Zoe Saldaña",
-                    "film": "Emilia Pérez"
+                    "film": "Emilia Pérez",
+                    "photos": [
+                        "Zoe-Saldana.jpg",
+                        "Zoe-Saldana-1.jpg"
+                    ]
                 }
             ],
             "my_winner": {
@@ -249,7 +289,8 @@
                 },
                 {
                     "film": "Dune Part Two",
-                    "crew": "Gareth John, Richard King, Ron Bartlett & Doug Hemphill"
+                    "crew": "Gareth John, Richard King, Ron Bartlett & Doug Hemphill",
+                    "trailer": "https://www.youtube.com/watch?v=5-rbSwTv6tM&ab_channel=AFRFX"
                 },
                 {
                     "film": "Emilia Pérez",
@@ -339,7 +380,8 @@
                 },
                 {
                     "film": "Dune Part Two",
-                    "crew": "Greig Fraser"
+                    "crew": "Greig Fraser",
+                    "trailer": "https://www.youtube.com/watch?v=fnlKwBiHIGs&ab_channel=4KHDRMedia"
                 },
                 {
                     "film": "Emilia Pérez",
@@ -364,19 +406,25 @@
             "name": "International Feature Film",
             "nominees": [
                 {
-                    "film": "I'm Still Here"
+                    "film": "I'm Still Here",
+                    "trailer": "https://www.youtube.com/watch?v=gDunV808Yf4&t=7s&ab_channel=SonyPicturesClassics"
                 },
                 {
-                    "film": "The Girl with the Needle"
+                    "film": "The Girl with the Needle",
+                    "trailer": "https://www.youtube.com/watch?v=NdjhUNH5v3Q&ab_channel=MUBI"
                 },
                 {
-                    "film": "Emilia Pérez"
+                    "film": "Emilia Pérez",
+                    "trailer": "https://www.youtube.com/watch?v=lwH9f1jmkBc&ab_channel=Pathe"
                 },
                 {
-                    "film": "The Seed of the Sacred Fig"
+                    "film": "The Seed of the Sacred Fig",
+                    "trailer": "https://www.youtube.com/watch?v=HI6Ryvq8jcY&ab_channel=TIFFTrailers"
                 },
                 {
-                    "film": "Flow"
+                    "film": "Flow",
+                    "trailer": "https://www.youtube.com/watch?v=82WW9dVbglI&ab_channel=MadmanFilms"
+
                 }
             ],
             "my_winner": {
@@ -415,7 +463,7 @@
             ],
             "my_winner": {
                 "film": "The Brutalist",
-                "crew": "Hans Zimmer"
+                "crew": "Daniel Blumberg"
             },
             "official_winner": null
         },
@@ -450,7 +498,7 @@
             ],
             "my_winner": {
                 "film": "El Mal",
-                "crew": "Lin-Manuel Miranda - Emilia Pérez"
+                "crew": "Clément Ducol & Camille - Emilia Pérez"
             },
             "official_winner": null
         },
@@ -459,23 +507,43 @@
             "nominees": [
                 {
                     "actor": "Adrien Brody",
-                    "film": "The Brutalist"
+                    "film": "The Brutalist",
+                    "photos": [
+                        "Adrien-Brody.jpg",
+                        "Adrien-Brody-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Timothée Chalamet",
-                    "film": "A Complete Unknown"
+                    "film": "A Complete Unknown",
+                    "photos": [
+                        "Timothée-Chalamet.jpg",
+                        "Timothée-Chalamet-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Colman Domingo",
-                    "film": "Sing Sing"
+                    "film": "Sing Sing",
+                    "photos": [
+                        "Colman-Domingo.jpg",
+                        "Colman-Domingo-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Ralph Fiennes",
-                    "film": "Conclave"
+                    "film": "Conclave",
+                    "photos": [
+                        "Ralph-Fiennes.jpg",
+                        "Ralph-Fiennes-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Sebastian Stan",
-                    "film": "The Apprentice"
+                    "film": "The Apprentice",
+                    "photos": [
+                        "Sebastian-Stan.jpg",
+                        "Sebastian-Stan-1.jpg"
+                    ]
                 }
             ],
             "my_winner": {
@@ -489,23 +557,44 @@
             "nominees": [
                 {
                     "actor": "Cynthia Erivo",
-                    "film": "Wicked"
+                    "film": "Wicked",
+                    "photos": [
+                        "Cynthia-Erivo.jpg",
+                        "Cynthia-Erivo-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Karla Sofía Gascón",
-                    "film": "Emilia Pérez"
+                    "film": "Emilia Pérez",
+                    "photos": [
+                        "Karla-Sofia-Gascón.jpg",
+                        "Karla-Sofia-Gascón-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Mikey Madison",
-                    "film": "Anora"
+                    "film": "Anora",
+                    "photos": [
+                        "Mikey-Madison.jpg",
+                        "Mikey-Madison-1.jpg"
+                    ]
                 },
                 {
                     "actor": "Demi Moore",
-                    "film": "The Substance"
+                    "film": "The Substance",
+                    "photos": [
+                        "Demi-Moore.jpg",
+                        "Demi-Moore-1.jpg",
+                        "Demi-Moore-2.jpg"
+                    ]
                 },
                 {
                     "actor": "Fernanda Torres",
-                    "film": "I'm Still Here"
+                    "film": "I'm Still Here",
+                    "photos": [
+                        "Fernanda-Torres.jpg",
+                        "Fernanda-Torres-1.jpg"
+                    ]
                 }
             ],
             "my_winner": {

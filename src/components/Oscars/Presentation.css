@@ -1,4 +1,3 @@
-/* Styles généraux */
 :root {
   --oscar-gold: #d4af37;
   --oscar-dark-gold: #b8860b;
@@ -18,13 +17,11 @@ body {
   overflow-x: hidden;
 }
 
-/* Présentation des Oscars */
 .oscars-presentation {
   width: 100%;
   min-height: 100vh;
 }
 
-/* Section d'introduction */
 .intro-section {
   height: 100vh;
   display: flex;
@@ -32,7 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   background: var(--oscar-white);
   position: relative;
   scroll-snap-align: start;
@@ -126,13 +123,11 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 300px;
+  width: 200px;
   aspect-ratio: 3.5/1;
-  margin: 0 auto;
   filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.7));
 }
 
-/* Sections de catégories */
 .category-section {
   min-height: 100vh;
   max-height: 100vh;
@@ -190,7 +185,6 @@ body {
   left: 20%;
 }
 
-/* Conteneur des nominés */
 .nominees-container {
   display: flex;
   flex-direction: column;
@@ -204,7 +198,6 @@ body {
   position: relative;
 }
 
-/* Special layout for Best Picture category */
 .best-picture-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -220,7 +213,6 @@ body {
   font-size: min(2.5vw, 1.1rem);
 }
 
-/* Cartes des nominés */
 .nominee-card {
   border-radius: 12px;
   height: min(12vh, 90px);
@@ -241,7 +233,6 @@ body {
   cursor: pointer;
 }
 
-/* Style spécial pour la carte gagnante */
 .winner-card {
   background: var(--oscar-white);
   z-index: 10;
@@ -308,6 +299,19 @@ body {
   transition: all 0.3s ease;
 }
 
+.nominee-image.spinning {
+  animation: simpleFade 1s ease-in-out;
+}
+
+@keyframes simpleFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: var(--nominee-opacity, 1);
+  }
+}
+
 .nominee-image.film-image {
   width: calc(min(12vh, 90px) * 0.667);
   height: 100%;
@@ -334,6 +338,7 @@ body {
 }
 
 .not-seen-card .nominee-image {
+  --nominee-opacity: 0.75;
   opacity: 0.75;
   border-color: var(--oscar-charcoal);
 }
@@ -352,6 +357,18 @@ body {
 .nominee-description {
   font-family: 'Futura PT Light Book', 'Futura', sans-serif;
   font-size: min(3vw, 1rem);
+  color: var(--oscar-black);
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  opacity: 0.8;
+  width: 100%;
+}
+
+.nominee-description-sm {
+  font-family: 'Futura PT Light Book', 'Futura', sans-serif;
+  font-size: min(2.2vw, 0.9rem);
   color: var(--oscar-black);
   font-style: italic;
   position: relative;
@@ -392,9 +409,6 @@ body {
   opacity: 0.9;
 }
 
-
-
-/* Bouton pour révéler le gagnant */
 .reveal-winner-btn {
   background-color: transparent;
   color: var(--oscar-gold);
@@ -411,6 +425,9 @@ body {
   box-shadow: none;
   width: fit-content;
   min-width: min(200px, 60vw);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal-winner-btn:hover:not(:disabled) {
@@ -424,20 +441,16 @@ body {
 }
 
 .reveal-winner-btn.revealed {
-  background-color: var(--oscar-gold);
-  color: var(--oscar-white);
-  opacity: 0.7;
-  border: none;
-  cursor: default;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-/* Animation de défilement */
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
 }
 
-/* Media Queries pour différentes tailles d'écran */
 @media (max-width: 768px) {
   .nominees-container {
     gap: 1.2vh;
@@ -581,7 +594,6 @@ html {
   }
 }
 
-/* Style spécial pour les films non vus */
 .not-seen-card {
   background: linear-gradient(to right, var(--oscar-white), rgba(85, 86, 90, 0.05));
   border: 1px solid var(--oscar-charcoal);
@@ -610,7 +622,6 @@ html {
   color: var(--oscar-charcoal);
 }
 
-/* When a not-seen card is also a winner */
 .not-seen-card.winner-card {
   background: linear-gradient(to right, var(--oscar-white), rgba(85, 86, 90, 0.1));
   border: 1px solid var(--oscar-charcoal);
@@ -655,7 +666,6 @@ html {
   transform: scale(1.05);
 }
 
-/* Falling Heart Animation */
 .falling-heart {
   position: fixed;
   z-index: 9999;
@@ -685,7 +695,6 @@ html {
   padding-top: 100%;
 }
 
-/* Falling Circle Animation */
 .falling-circle {
   position: fixed;
   z-index: 9999;
@@ -707,4 +716,25 @@ html {
     top: 100vh;
     transform: rotate(var(--spin-amount));
   }
+}
+
+.language-toggle-btn {
+  background-color: transparent;
+  color: var(--oscar-gold);
+  border: 1px solid var(--oscar-gold);
+  padding: 0.5rem 1.5rem;
+  font-family: 'Futura PT Light Book', 'Futura', sans-serif;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.language-toggle-btn:hover {
+  background-color: var(--oscar-gold);
+  color: var(--oscar-white);
+  transform: scale(1.05);
 }

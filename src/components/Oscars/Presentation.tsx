@@ -37,11 +37,12 @@ export const Presentation = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [validImagePaths, setValidImagePaths] = useState<{ [key: string]: boolean }>({});
+  const [currentImageIndices, setCurrentImageIndices] = useState<{ [key: string]: number }>({});
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
   const scrollTimeout = useRef<number | undefined>(undefined);
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
+  const [language, setLanguage] = useState<'fr' | 'en'>('fr');
 
-  // Use the imported data
   const oscarsData: OscarsData = oscarsDataJson;
   const { year, categories } = oscarsData;
 
@@ -54,7 +55,6 @@ export const Presentation = () => {
     });
   };
 
-  // Preload all images on component mount
   useEffect(() => {
     const preloadImages = async () => {
       const actorNames = new Set<string>();
@@ -98,17 +98,19 @@ export const Presentation = () => {
     preloadImages();
   }, [categories]);
 
-  // Modified version of the component that uses the cached image paths
-  const getActorImagePathSync = (actorName: string | undefined) => {
-    if (!actorName || !validImagePaths[actorName]) return undefined;
+  const getActorImagePathSync = (actorName: string | undefined, index: number = 0) => {
+    if (!actorName) return undefined;
 
-    return `/actors/${actorName
+    const baseImagePath = `/actors/${actorName
       .replace(/\s+/g, '-')
       .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')}.jpg`;
+      .replace(/[\u0300-\u036f]/g, '')}`;
+
+    const imagePath = index === 0 ? `${baseImagePath}.jpg` : `${baseImagePath}-${index}.jpg`;
+
+    return imagePath;
   };
 
-  // Modified version of the component that uses the cached image paths
   const getFilmImagePathSync = (filmName: string | undefined) => {
     console.log(filmName);
     if (!filmName || !validImagePaths[filmName]) return undefined;
@@ -127,15 +129,12 @@ export const Presentation = () => {
       .replace(/[\u0300-\u036f]/g, '')}.jpg`;
   };
 
-  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const scrollDiff = Math.abs(currentScrollY - lastScrollY);
 
-      // If we're in the middle of an animation and the scroll is significant (> 50px)
       if (isAnimating && scrollDiff > 50) {
-        // Cancel the animation smoothly
         if (showingReveal) {
           handleRevealComplete();
         }
@@ -144,21 +143,17 @@ export const Presentation = () => {
       setLastScrollY(currentScrollY);
       setScrollY(currentScrollY);
 
-      // Clear existing timeout
       if (scrollTimeout.current) {
         window.clearTimeout(scrollTimeout.current);
       }
 
-      // Set new timeout to update scroll state after scrolling stops
       scrollTimeout.current = window.setTimeout(() => {
         setLastScrollY(window.scrollY);
       }, 150);
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (scrollTimeout.current) {
@@ -168,14 +163,11 @@ export const Presentation = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastScrollY, isAnimating, showingReveal]);
 
-  // Effet pour changer de section en fonction du défilement
   useEffect(() => {
     const sectionHeight = window.innerHeight;
     const currentSection = Math.floor(scrollY / sectionHeight);
-    // We add 1 to account for the intro section, but we don't want to exceed categories.length + 1
     setActiveSection(Math.min(currentSection, categories.length + 1));
 
-    // Add fade effect to intro section background
     const introSection = document.querySelector('.intro-section');
     if (introSection) {
       if (scrollY > window.innerHeight * 0.3) {
@@ -186,7 +178,6 @@ export const Presentation = () => {
     }
   }, [scrollY, categories.length]);
 
-  // Fonction pour naviguer vers une section spécifique
   const navigateToSection = (index: number) => {
     if (sectionRefs.current[index]) {
       sectionRefs.current[index]?.scrollIntoView({
@@ -197,11 +188,9 @@ export const Presentation = () => {
   };
 
   const revealWinner = (categoryName: string) => {
-    // Get the category index
     const categoryIndex = categories.findIndex((cat) => cat.name === categoryName);
     const isLastFourCategories = categoryIndex >= categories.length - 4;
 
-    // Only show reveal animation if it hasn't been shown before and it's one of the last 4 categories
     if (!animatedCategories[categoryName] && isLastFourCategories) {
       setShowingReveal(categoryName);
       setIsAnimating(true);
@@ -210,12 +199,10 @@ export const Presentation = () => {
         [categoryName]: true,
       }));
     } else {
-      // If already animated or not in last 4 categories, just update the highlighted winners immediately
       setHighlightedWinners((prev) => ({
         ...prev,
         [categoryName]: true,
       }));
-      // If it's the Music (Original Score) category, show the video
       if (categoryName === 'Music (Original Score)') {
         setSelectedVideoId('2TAZJHgGt_c');
       }
@@ -228,7 +215,6 @@ export const Presentation = () => {
         ...prev,
         [showingReveal]: true,
       }));
-      // If it's the Music (Original Score) category, show the video
       if (showingReveal === 'Music (Original Score)') {
         setSelectedVideoId('2TAZJHgGt_c');
       }
@@ -249,7 +235,6 @@ export const Presentation = () => {
     );
   };
 
-  // Fonction pour assigner les refs correctement
   const assignRef = (index: number) => (el: HTMLElement | null) => {
     sectionRefs.current[index] = el;
   };
@@ -287,7 +272,6 @@ export const Presentation = () => {
     ].includes(film);
   };
 
-  // Function to search for movie trailer on YouTube
   const searchTrailer = async (movieTitle: string) => {
     const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
     if (!apiKey) {
@@ -312,35 +296,29 @@ export const Presentation = () => {
     }
   };
 
-  const createFallingSquare = (nominee: Nominee) => {
-    if (!nominee.actor) return;
-
+  const createFallingHeart = () => {
     const element = document.createElement('div');
     element.className = 'falling-heart';
 
-    // Random size between 15px and 50px
     const size = Math.floor(Math.random() * (50 - 15 + 1)) + 15;
     element.style.width = `${size}px`;
     element.style.height = `${size}px`;
 
-    // Generate random shades of red for the gradient
     const generateRandomRed = (baseLightness: number) => {
-      const baseHue = 0; // Red
-      const saturation = Math.floor(Math.random() * (100 - 85) + 85); // 85-100% for richer reds
-      // Vary lightness around the base value with smaller variations
+      const baseHue = 0;
+      const saturation = Math.floor(Math.random() * (100 - 85) + 85);
       const lightness = Math.max(0, Math.min(100, baseLightness + (Math.random() * 10 - 5)));
       return `hsl(${baseHue}, ${saturation}%, ${lightness}%)`;
     };
 
-    // Create a smoother gradient with more color stops
     const gradient = [
-      generateRandomRed(65), // Lightest
+      generateRandomRed(65),
       generateRandomRed(55),
       generateRandomRed(45),
       generateRandomRed(35),
       generateRandomRed(30),
       generateRandomRed(25),
-      generateRandomRed(20), // Darkest
+      generateRandomRed(20),
     ];
 
     const gradientString = `linear-gradient(135deg, 
@@ -355,26 +333,53 @@ export const Presentation = () => {
 
     element.style.setProperty('--heart-gradient', gradientString);
 
-    // Random horizontal position
     const randomLeft = Math.random() * (window.innerWidth - size);
     element.style.left = `${randomLeft}px`;
 
-    // Random rotation amount (between 360 and 1440 degrees - 1 to 4 full spins)
     const spinAmount = 360 * (Math.floor(Math.random() * 4) + 1);
     element.style.setProperty('--spin-amount', `${spinAmount}deg`);
 
     document.body.appendChild(element);
 
-    // Remove the element after animation completes
     element.addEventListener('animationend', () => {
       document.body.removeChild(element);
     });
   };
 
-  // Handle nominee card click
   const handleNomineeClick = async (nominee: Nominee) => {
     if (nominee.actor === 'Monica Barbaro') {
-      createFallingSquare(nominee);
+      createFallingHeart();
+    }
+    if (nominee.actor) {
+      const nomineeCard = document.querySelector(`[data-actor="${nominee.actor}"]`);
+      if (nomineeCard) {
+        const categorySection = nomineeCard.closest('.category-section');
+        const categoryTitle = categorySection?.querySelector('.category-title')?.textContent;
+
+        if (categoryTitle && categoryTitle !== 'Directing') {
+          const image = nomineeCard.querySelector('.nominee-image') as HTMLElement;
+          if (image) {
+            const actorName = nominee.actor;
+            const currentIndex = currentImageIndices[actorName] || 0;
+            const totalPhotos = nominee.photos?.length || 1;
+            const nextIndex = (currentIndex + 1) % totalPhotos;
+
+            setCurrentImageIndices((prev) => ({
+              ...prev,
+              [actorName]: nextIndex,
+            }));
+
+            image.classList.remove('spinning');
+            void image.offsetWidth;
+            image.classList.add('spinning');
+
+            const newImagePath = getActorImagePathSync(actorName, nextIndex);
+            if (newImagePath) {
+              image.setAttribute('src', newImagePath);
+            }
+          }
+        }
+      }
     }
 
     if (nominee.trailer) {
@@ -387,49 +392,42 @@ export const Presentation = () => {
       }
     }
 
-    // Fallback to search if no trailer URL or invalid URL
     const videoId = await searchTrailer(nominee.film);
     setSelectedVideoId(videoId);
   };
 
-  // Handle YouTube modal close
   const handleModalClose = () => {
     setSelectedVideoId(null);
   };
 
-  // Create heart avalanche for 5 seconds
   const createHeartAvalanche = () => {
     const startTime = Date.now();
-    const duration = 5000; // 5 seconds
-    const interval = 100; // Create new hearts every 100ms
+    const duration = 5000;
+    const interval = 100;
 
     const createHeart = () => {
       const element = document.createElement('div');
       element.className = 'falling-heart';
 
-      // Random size between 15px and 50px
       const size = Math.floor(Math.random() * (50 - 15 + 1)) + 15;
       element.style.width = `${size}px`;
       element.style.height = `${size}px`;
 
-      // Generate random shades of red for the gradient
       const generateRandomRed = (baseLightness: number) => {
-        const baseHue = 0; // Red
-        const saturation = Math.floor(Math.random() * (100 - 85) + 85); // 85-100% for richer reds
-        // Vary lightness around the base value with smaller variations
+        const baseHue = 0;
+        const saturation = Math.floor(Math.random() * (100 - 85) + 85);
         const lightness = Math.max(0, Math.min(100, baseLightness + (Math.random() * 10 - 5)));
         return `hsl(${baseHue}, ${saturation}%, ${lightness}%)`;
       };
 
-      // Create a smoother gradient with more color stops
       const gradient = [
-        generateRandomRed(65), // Lightest
+        generateRandomRed(65),
         generateRandomRed(55),
         generateRandomRed(45),
         generateRandomRed(35),
         generateRandomRed(30),
         generateRandomRed(25),
-        generateRandomRed(20), // Darkest
+        generateRandomRed(20),
       ];
 
       const gradientString = `linear-gradient(135deg, 
@@ -444,23 +442,19 @@ export const Presentation = () => {
 
       element.style.setProperty('--heart-gradient', gradientString);
 
-      // Random horizontal position
       const randomLeft = Math.random() * (window.innerWidth - size);
       element.style.left = `${randomLeft}px`;
 
-      // Random rotation amount (between 360 and 1440 degrees - 1 to 4 full spins)
       const spinAmount = 360 * (Math.floor(Math.random() * 4) + 1);
       element.style.setProperty('--spin-amount', `${spinAmount}deg`);
 
       document.body.appendChild(element);
 
-      // Remove the element after animation completes
       element.addEventListener('animationend', () => {
         document.body.removeChild(element);
       });
     };
 
-    // Create hearts at regular intervals for 5 seconds
     const heartInterval = setInterval(() => {
       if (Date.now() - startTime >= duration) {
         clearInterval(heartInterval);
@@ -470,37 +464,52 @@ export const Presentation = () => {
     }, interval);
   };
 
+  const handleLanguageChange = () => {
+    if (language === 'fr') {
+      setLanguage('en');
+    } else {
+      setLanguage('fr');
+    }
+  };
+
   return (
     <div className="oscars-presentation">
       <div className="intro-section" ref={assignRef(0)}>
-        <div className="flex flex-col items-center justify-center mb-12">
+        <div className="flex flex-col items-center justify-center mb-4">
           <h1>The {year - 1928}th Academy Awards</h1>
           <div className="oscars-text-logo" />
         </div>
-        <p className="text-sm">
-          Bienvenue dans ma propre remise des Oscars {year}.
-          <br />
-          Ayant vu une grande partie des films nominés cette année, je voulais vous partagez mes
-          avis sur les films de cette belle année qui s'est déroulé.
-          <br />
-          J'ai donc crée un site sur mesure pour vous partager les films que j'ai préféré cette
-          année.
-          <br />
-          Je vous laisse découvrir le site en défilant vers le bas.
-        </p>
-        <p>-</p>
-        <p className="text-sm">
-          Welcome to my very own {year} Oscars awards.
-          <br />
-          Having watched a large portion of this year's nominated films, I wanted to share my
-          thoughts on the movies from this wonderful year.
-          <br />
-          So, I created a custom website to share my favorite films of the year with you.
-          <br />
-          Feel free to explore the site by scrolling down.
-        </p>
+        {language === 'fr' ? (
+          <p className="text-sm">
+            Bienvenue dans ma propre cérémonie de remise des Oscars {year}.
+            <br />
+            Ayant vu une grande partie des films nominés cette année, je voulais vous partagez mes
+            avis sur les films de cette belle année qui s'est déroulé.
+            <br />
+            J'ai fait ça pour vous partager les films que j'ai préféré cette année.
+            <br />
+            Je vous laisse vous balader et explorer le site en défilant vers le bas.
+            <br />
+            J'espère que vous aimerez !
+          </p>
+        ) : (
+          <p className="text-sm">
+            Welcome to my very own {year} Oscars ceremony.
+            <br />
+            Having watched a large portion of this year's nominated films, I wanted to share my
+            thoughts on the movies from this wonderful year.
+            <br />I created this to share my favorite films of the year with you.
+            <br />
+            Feel free to explore by scrolling down.
+            <br />I hope you enjoy it!
+          </p>
+        )}
+        <button type="button" className="underline" onClick={handleLanguageChange}>
+          {language === 'fr' ? 'English' : 'Français'}
+        </button>
+
         <div className="scroll-indicator" onClick={() => navigateToSection(1)}>
-          <span>Défiler</span>
+          <span>Scroll</span>
           <div className="scroll-arrow"></div>
         </div>
       </div>
@@ -523,6 +532,7 @@ export const Presentation = () => {
               {category.nominees.map((nominee, index) => (
                 <div
                   key={index}
+                  data-actor={nominee.actor}
                   className={`nominee-card ${
                     isWinner(category.name, nominee) ? 'winner-card' : ''
                   } ${isNotSeen(nominee.film) ? 'not-seen-card' : ''} ${
@@ -534,7 +544,18 @@ export const Presentation = () => {
                 >
                   <div className="nominee-info">
                     <div className="nominee-title">{getNomineeTitle(nominee)}</div>
-                    <div className="nominee-description">{getNomineeDescription(nominee)}</div>
+                    <div
+                      className={`${
+                        category.name === 'Sound' ||
+                        category.name === 'Visual Effects' ||
+                        category.name === 'Makeup and Hairstyling' ||
+                        category.name === 'Music (Original Song)'
+                          ? 'nominee-description-sm'
+                          : 'nominee-description'
+                      }`}
+                    >
+                      {getNomineeDescription(nominee)}
+                    </div>
                   </div>
                   {isNotSeen(nominee.film) && (
                     <div
@@ -557,16 +578,23 @@ export const Presentation = () => {
                       className={`oscar-statuette ${nominee.actor ? 'with-actor' : 'with-film'}`}
                     />
                   )}
-                  {getActorImagePathSync(nominee.actor) && (
-                    <img
-                      src={getActorImagePathSync(nominee.actor)}
-                      alt={nominee.actor}
-                      className="nominee-image"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none';
-                      }}
-                    />
-                  )}
+                  {nominee.actor &&
+                    getActorImagePathSync(
+                      nominee.actor,
+                      currentImageIndices[nominee.actor] || 0
+                    ) && (
+                      <img
+                        src={getActorImagePathSync(
+                          nominee.actor,
+                          currentImageIndices[nominee.actor] || 0
+                        )}
+                        alt={nominee.actor}
+                        className="nominee-image"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                    )}
                   {!nominee.actor && getFilmImagePathSync(nominee.film) && (
                     <img
                       src={getFilmImagePathSync(nominee.film)}
@@ -582,7 +610,11 @@ export const Presentation = () => {
             </div>
 
             <button
-              className="reveal-winner-btn"
+              className={`reveal-winner-btn ${
+                showingReveal === category.name || highlightedWinners[category.name]
+                  ? 'revealed'
+                  : ''
+              }`}
               onClick={() => revealWinner(category.name)}
               disabled={!category.my_winner}
             >
@@ -599,23 +631,37 @@ export const Presentation = () => {
       <section className="thanks-section category-section" ref={assignRef(categories.length + 2)}>
         <div className="thanks-content">
           <h2 className="category-title">Thank You</h2>
-          <div className="thanks-text flex flex-col gap-1">
-            <p>Merci d'avoir suivi ma propre remise des Oscars {year}.</p>
-            <p>N'hésitez pas à partager vos avis et vos pronostics !</p>
-            <p>
-              Rendez-vous l'année prochaine pour les Oscars {year + 1}, avec un site encore plus
-              abouti, c'est promis !
-            </p>
-            <p>Et d'ici là je compte sur vous pour aller au cinéma !</p>
-            <p> - </p>
-            <p>Thank you for exploring my personal {year} Oscars rewards.</p>
-            <p>Feel free to share your thoughts and predictions!</p>
-            <p>
-              See you next year for the Oscars {year + 1}, with an improved website this time, i
-              promise !
-            </p>
-            <p>And i count on you to go to the movies !</p>
+          <div className="thanks-text flex flex-col letter-spacing-0">
+            {language === 'fr' ? (
+              <>
+                <p>Merci d'avoir suivi ma propre cérémonie de remise des Oscars {year}.</p>
+                <p>N'hésitez pas à partager vos avis et vos pronostics !</p>
+                <p>
+                  Rendez-vous l'année prochaine pour les Oscars {year + 1}, avec un site encore plus
+                  abouti, c'est promis !
+                </p>
+                <p>Et d'ici là je compte sur vous pour aller au cinéma !</p>
+              </>
+            ) : (
+              <>
+                <p>Thank you for exploring my personal {year} Oscars rewards.</p>
+                <p>Feel free to share your thoughts and predictions!</p>
+                <p>
+                  See you next year for the Oscars {year + 1}, with an improved website this time, i
+                  promise !
+                </p>
+                <p>And i count on you to go to the movies !</p>
+              </>
+            )}
           </div>
+          <p>
+            {language === 'fr' ? `Ajoutez-moi sur Letterboxd :` : 'Add me on Letterboxd :'}
+            <a href="https://boxd.it/9eI9r" target="_blank" rel="noopener noreferrer">
+              <span className="text-[#FF8000]">https://</span>
+              <span className="text-[#00e054]">boxd.it</span>
+              <span className="text-[#40bcf4]">/9eI9r</span>
+            </a>
+          </p>
           <p>Eliott</p>
           <button className="thanks-btn" onClick={createHeartAvalanche}>
             🫶
