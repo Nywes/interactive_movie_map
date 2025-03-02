@@ -4,6 +4,7 @@ import './Presentation.css';
 import oscarsDataJson from './oscars-data.json';
 import { OscarReveal } from './OscarReveal';
 import { YouTubeModal } from './YouTubeModal';
+import { MissingPoster } from './MissingPoster';
 
 // Définir les types pour les nominés et les sections
 type Nominee = {
@@ -218,6 +219,10 @@ export const Presentation = () => {
         ...prev,
         [showingReveal]: true,
       }));
+      // If it's the Music (Original Score) category, show the video
+      if (showingReveal === 'Music (Original Score)') {
+        setSelectedVideoId('2TAZJHgGt_c');
+      }
       setShowingReveal(null);
       setIsAnimating(false);
     }
@@ -302,7 +307,7 @@ export const Presentation = () => {
     if (nominee.trailer) {
       // Extract video ID from YouTube URL
       const videoId = nominee.trailer.match(
-        /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+        /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
       )?.[1];
       if (videoId) {
         setSelectedVideoId(videoId);
@@ -313,6 +318,11 @@ export const Presentation = () => {
     // Fallback to search if no trailer URL or invalid URL
     const videoId = await searchTrailer(nominee.film);
     setSelectedVideoId(videoId);
+  };
+
+  // Handle YouTube modal close
+  const handleModalClose = () => {
+    setSelectedVideoId(null);
   };
 
   return (
@@ -425,11 +435,17 @@ export const Presentation = () => {
         </section>
       ))}
 
-      {/* Add YouTube Modal */}
-      <YouTubeModal videoId={selectedVideoId} onClose={() => setSelectedVideoId(null)} />
-
+      <YouTubeModal videoId={selectedVideoId} onClose={handleModalClose} />
       <footer className="oscars-footer">
-        <p>© {year} Ma Présentation des Oscars</p>
+        <p className="pl-4">© {year} made by Eliott RIVET</p>
+
+        <div className="missing-poster-container pt-40" style={{ margin: '40px auto' }}>
+          <MissingPoster
+            name="CHALLENGERS"
+            lastSeen="APRIL 29, 2024"
+            photoUrl="/films/Challengers.jpg"
+          />
+        </div>
       </footer>
     </div>
   );

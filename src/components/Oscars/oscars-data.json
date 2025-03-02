@@ -385,23 +385,28 @@
             "nominees": [
                 {
                     "film": "The Brutalist",
-                    "crew": "Hans Zimmer"
+                    "crew": "Hans Zimmer",
+                    "trailer": "https://www.youtube.com/watch?v=2olBDm1ekFQ&ab_channel=SonySoundtracksVEVO"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "Alexandre Desplat"
+                    "crew": "Alexandre Desplat",
+                    "trailer": "https://www.youtube.com/watch?v=U4DR1D5wZ7g&ab_channel=VolkerBertelmann-Topic"
                 },
                 {
                     "film": "Emilia Pérez",
-                    "crew": "Nicholas Britell"
+                    "crew": "Nicholas Britell",
+                    "trailer": "https://www.youtube.com/watch?v=cxrLrymdV0k&ab_channel=Release-Topic"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Stephen Schwartz"
+                    "crew": "Stephen Schwartz",
+                    "trailer": "https://www.youtube.com/watch?v=RwNX7IUdLfU&list=PLL7eixYHeVxDwz6jQZ0Ef4UA9Ly774PVk&index=27&ab_channel=JohnPowell-Topic"
                 },
                 {
                     "film": "The Wild Robot",
-                    "crew": "Michael Giacchino"
+                    "crew": "Michael Giacchino",
+                    "trailer": "https://www.youtube.com/watch?v=ng0R_4WkQ88&ab_channel=Release-Topic"
                 }
             ],
             "my_winner": {
@@ -415,23 +420,28 @@
             "nominees": [
                 {
                     "film": "El Mal",
-                    "crew": "Lin-Manuel Miranda - Emilia Pérez"
+                    "crew": "Lin-Manuel Miranda - Emilia Pérez",
+                    "trailer": "https://www.youtube.com/watch?v=IkLRuy3qFHY&ab_channel=SonySoundtracksVEVO"
                 },
                 {
                     "film": "The Journey",
-                    "crew": "Diane Warren - The Six Triple Eight"
+                    "crew": "Diane Warren - The Six Triple Eight",
+                    "trailer": "https://www.youtube.com/watch?v=Tc3TYuMAjZY&ab_channel=StillWatchingNetflix"
                 },
                 {
                     "film": "Like a Bird",
-                    "crew": "Jack Antonoff - Sing Sing"
+                    "crew": "Jack Antonoff - Sing Sing",
+                    "trailer": "https://www.youtube.com/watch?v=tAE8o7GalKg&ab_channel=A24"
                 },
                 {
                     "film": "Mi Camino",
-                    "crew": "Lin-Manuel Miranda - Emilia Pérez"
+                    "crew": "Lin-Manuel Miranda - Emilia Pérez",
+                    "trailer": "https://www.youtube.com/watch?v=REM5u28nToc&ab_channel=SelenaGomez"
                 },
                 {
                     "film": "Never Too Late",
-                    "crew": "Elton John - Elton John: Never Too Late"
+                    "crew": "Elton John - Elton John: Never Too Late",
+                    "trailer": "https://www.youtube.com/watch?v=UwL4UC_tLTI&ab_channel=EltonJohnVEVO"
                 }
             ],
             "my_winner": {
