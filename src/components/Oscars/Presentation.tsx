@@ -484,10 +484,7 @@ export const Presentation = () => {
             <p className="text-md">
               Bienvenue dans ma propre cérémonie de remise des Oscars {year}.
               <br />
-              Ayant vu une grande partie des films nominés cette année, je voulais vous partagez mes
-              avis sur les films de cette belle année qui s'est déroulé.
-              <br />
-              J'ai fait ça pour vous partager les films que j'ai préféré cette année.
+              Ayant vu une grande partie des films nominés cette année, j'ai fait ça pour vous partager les films que j'ai préféré cette année.
               <br />
               Je vous laisse vous balader et explorer le site en défilant vers le bas.
               <br />
@@ -497,9 +494,7 @@ export const Presentation = () => {
             <p className="text-md">
               Welcome to my very own {year} Oscars ceremony.
               <br />
-              Having watched a large portion of this year's nominated films, I wanted to share my
-              thoughts on the movies from this wonderful year.
-              <br />I created this to share my favorite films of the year with you.
+              Having watched a large portion of this year's nominated films, I created this to share my favorite films of the year with you.
               <br />
               Feel free to explore by scrolling down.
               <br />I hope you enjoy it!
