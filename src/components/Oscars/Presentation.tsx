@@ -13,6 +13,7 @@ type Nominee = {
   crew?: string;
   notSeen?: boolean;
   trailer?: string;
+  photos?: string[];
 };
 
 type Category = {
@@ -196,8 +197,12 @@ export const Presentation = () => {
   };
 
   const revealWinner = (categoryName: string) => {
-    // Only show reveal animation if it hasn't been shown before
-    if (!animatedCategories[categoryName]) {
+    // Get the category index
+    const categoryIndex = categories.findIndex((cat) => cat.name === categoryName);
+    const isLastFourCategories = categoryIndex >= categories.length - 4;
+
+    // Only show reveal animation if it hasn't been shown before and it's one of the last 4 categories
+    if (!animatedCategories[categoryName] && isLastFourCategories) {
       setShowingReveal(categoryName);
       setIsAnimating(true);
       setAnimatedCategories((prev) => ({
@@ -205,11 +210,15 @@ export const Presentation = () => {
         [categoryName]: true,
       }));
     } else {
-      // If already animated, just update the highlighted winners immediately
+      // If already animated or not in last 4 categories, just update the highlighted winners immediately
       setHighlightedWinners((prev) => ({
         ...prev,
         [categoryName]: true,
       }));
+      // If it's the Music (Original Score) category, show the video
+      if (categoryName === 'Music (Original Score)') {
+        setSelectedVideoId('2TAZJHgGt_c');
+      }
     }
   };
 
@@ -274,6 +283,7 @@ export const Presentation = () => {
       'Like a Bird',
       'Never Too Late',
       'The Journey',
+      'Maria',
     ].includes(film);
   };
 
@@ -302,10 +312,72 @@ export const Presentation = () => {
     }
   };
 
+  const createFallingSquare = (nominee: Nominee) => {
+    if (!nominee.actor) return;
+
+    const element = document.createElement('div');
+    element.className = 'falling-heart';
+
+    // Random size between 15px and 50px
+    const size = Math.floor(Math.random() * (50 - 15 + 1)) + 15;
+    element.style.width = `${size}px`;
+    element.style.height = `${size}px`;
+
+    // Generate random shades of red for the gradient
+    const generateRandomRed = (baseLightness: number) => {
+      const baseHue = 0; // Red
+      const saturation = Math.floor(Math.random() * (100 - 85) + 85); // 85-100% for richer reds
+      // Vary lightness around the base value with smaller variations
+      const lightness = Math.max(0, Math.min(100, baseLightness + (Math.random() * 10 - 5)));
+      return `hsl(${baseHue}, ${saturation}%, ${lightness}%)`;
+    };
+
+    // Create a smoother gradient with more color stops
+    const gradient = [
+      generateRandomRed(65), // Lightest
+      generateRandomRed(55),
+      generateRandomRed(45),
+      generateRandomRed(35),
+      generateRandomRed(30),
+      generateRandomRed(25),
+      generateRandomRed(20), // Darkest
+    ];
+
+    const gradientString = `linear-gradient(135deg, 
+        ${gradient[0]} 0%,
+        ${gradient[1]} 20%,
+        ${gradient[2]} 35%,
+        ${gradient[3]} 50%,
+        ${gradient[4]} 65%,
+        ${gradient[5]} 80%,
+        ${gradient[6]} 100%
+      )`;
+
+    element.style.setProperty('--heart-gradient', gradientString);
+
+    // Random horizontal position
+    const randomLeft = Math.random() * (window.innerWidth - size);
+    element.style.left = `${randomLeft}px`;
+
+    // Random rotation amount (between 360 and 1440 degrees - 1 to 4 full spins)
+    const spinAmount = 360 * (Math.floor(Math.random() * 4) + 1);
+    element.style.setProperty('--spin-amount', `${spinAmount}deg`);
+
+    document.body.appendChild(element);
+
+    // Remove the element after animation completes
+    element.addEventListener('animationend', () => {
+      document.body.removeChild(element);
+    });
+  };
+
   // Handle nominee card click
   const handleNomineeClick = async (nominee: Nominee) => {
+    if (nominee.actor === 'Monica Barbaro') {
+      createFallingSquare(nominee);
+    }
+
     if (nominee.trailer) {
-      // Extract video ID from YouTube URL
       const videoId = nominee.trailer.match(
         /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
       )?.[1];
@@ -325,18 +397,107 @@ export const Presentation = () => {
     setSelectedVideoId(null);
   };
 
+  // Create heart avalanche for 5 seconds
+  const createHeartAvalanche = () => {
+    const startTime = Date.now();
+    const duration = 5000; // 5 seconds
+    const interval = 100; // Create new hearts every 100ms
+
+    const createHeart = () => {
+      const element = document.createElement('div');
+      element.className = 'falling-heart';
+
+      // Random size between 15px and 50px
+      const size = Math.floor(Math.random() * (50 - 15 + 1)) + 15;
+      element.style.width = `${size}px`;
+      element.style.height = `${size}px`;
+
+      // Generate random shades of red for the gradient
+      const generateRandomRed = (baseLightness: number) => {
+        const baseHue = 0; // Red
+        const saturation = Math.floor(Math.random() * (100 - 85) + 85); // 85-100% for richer reds
+        // Vary lightness around the base value with smaller variations
+        const lightness = Math.max(0, Math.min(100, baseLightness + (Math.random() * 10 - 5)));
+        return `hsl(${baseHue}, ${saturation}%, ${lightness}%)`;
+      };
+
+      // Create a smoother gradient with more color stops
+      const gradient = [
+        generateRandomRed(65), // Lightest
+        generateRandomRed(55),
+        generateRandomRed(45),
+        generateRandomRed(35),
+        generateRandomRed(30),
+        generateRandomRed(25),
+        generateRandomRed(20), // Darkest
+      ];
+
+      const gradientString = `linear-gradient(135deg, 
+        ${gradient[0]} 0%,
+        ${gradient[1]} 20%,
+        ${gradient[2]} 35%,
+        ${gradient[3]} 50%,
+        ${gradient[4]} 65%,
+        ${gradient[5]} 80%,
+        ${gradient[6]} 100%
+      )`;
+
+      element.style.setProperty('--heart-gradient', gradientString);
+
+      // Random horizontal position
+      const randomLeft = Math.random() * (window.innerWidth - size);
+      element.style.left = `${randomLeft}px`;
+
+      // Random rotation amount (between 360 and 1440 degrees - 1 to 4 full spins)
+      const spinAmount = 360 * (Math.floor(Math.random() * 4) + 1);
+      element.style.setProperty('--spin-amount', `${spinAmount}deg`);
+
+      document.body.appendChild(element);
+
+      // Remove the element after animation completes
+      element.addEventListener('animationend', () => {
+        document.body.removeChild(element);
+      });
+    };
+
+    // Create hearts at regular intervals for 5 seconds
+    const heartInterval = setInterval(() => {
+      if (Date.now() - startTime >= duration) {
+        clearInterval(heartInterval);
+        return;
+      }
+      createHeart();
+    }, interval);
+  };
+
   return (
     <div className="oscars-presentation">
       <div className="intro-section" ref={assignRef(0)}>
-        <div className="flex flex-col items-center justify-center">
-          <h1>Ma Présentation des</h1>
+        <div className="flex flex-col items-center justify-center mb-12">
+          <h1>The {year - 1928}th Academy Awards</h1>
           <div className="oscars-text-logo" />
-          <h2 className="year-text">{year}</h2>
         </div>
-        <p className="intro-text">
-          Bienvenue dans ma présentation personnelle des Oscars {year}. Découvrez mes nominations et
-          mes choix de gagnants pour chaque catégorie. Faites défiler pour explorer les différentes
-          catégories.
+        <p className="text-sm">
+          Bienvenue dans ma propre remise des Oscars {year}.
+          <br />
+          Ayant vu une grande partie des films nominés cette année, je voulais vous partagez mes
+          avis sur les films de cette belle année qui s'est déroulé.
+          <br />
+          J'ai donc crée un site sur mesure pour vous partager les films que j'ai préféré cette
+          année.
+          <br />
+          Je vous laisse découvrir le site en défilant vers le bas.
+        </p>
+        <p>-</p>
+        <p className="text-sm">
+          Welcome to my very own {year} Oscars awards.
+          <br />
+          Having watched a large portion of this year's nominated films, I wanted to share my
+          thoughts on the movies from this wonderful year.
+          <br />
+          So, I created a custom website to share my favorite films of the year with you.
+          <br />
+          Feel free to explore the site by scrolling down.
         </p>
         <div className="scroll-indicator" onClick={() => navigateToSection(1)}>
           <span>Défiler</span>
@@ -435,10 +596,35 @@ export const Presentation = () => {
         </section>
       ))}
 
+      <section className="thanks-section category-section" ref={assignRef(categories.length + 2)}>
+        <div className="thanks-content">
+          <h2 className="category-title">Thank You</h2>
+          <div className="thanks-text flex flex-col gap-1">
+            <p>Merci d'avoir suivi ma propre remise des Oscars {year}.</p>
+            <p>N'hésitez pas à partager vos avis et vos pronostics !</p>
+            <p>
+              Rendez-vous l'année prochaine pour les Oscars {year + 1}, avec un site encore plus
+              abouti, c'est promis !
+            </p>
+            <p>Et d'ici là je compte sur vous pour aller au cinéma !</p>
+            <p> - </p>
+            <p>Thank you for exploring my personal {year} Oscars rewards.</p>
+            <p>Feel free to share your thoughts and predictions!</p>
+            <p>
+              See you next year for the Oscars {year + 1}, with an improved website this time, i
+              promise !
+            </p>
+            <p>And i count on you to go to the movies !</p>
+          </div>
+          <p>Eliott</p>
+          <button className="thanks-btn" onClick={createHeartAvalanche}>
+            🫶
+          </button>
+        </div>
+      </section>
+
       <YouTubeModal videoId={selectedVideoId} onClose={handleModalClose} />
       <footer className="oscars-footer">
-        <p className="pl-4">© {year} made by Eliott RIVET</p>
-
         <div className="missing-poster-container pt-40" style={{ margin: '40px auto' }}>
           <MissingPoster
             name="CHALLENGERS"

@@ -18,8 +18,7 @@
                 },
                 {
                     "actor": "Guy Pearce",
-                    "film": "The Brutalist",
-                    "trailer": "https://www.youtube.com/watch?v=cCnz8l6ev7k&t=15s&ab_channel=UniversalPicturesFrance"
+                    "film": "The Brutalist"
                 },
                 {
                     "actor": "Jeremy Strong",
@@ -66,19 +65,24 @@
             "name": "Animated Feature Film",
             "nominees": [
                 {
-                    "film": "Flow"
+                    "film": "Flow",
+                    "trailer": "https://www.youtube.com/watch?v=82WW9dVbglI&ab_channel=MadmanFilms"
                 },
                 {
-                    "film": "Inside Out 2"
+                    "film": "Inside Out 2",
+                    "trailer": "https://www.youtube.com/watch?v=LEjhY15eCx0&ab_channel=Pixar"
                 },
                 {
-                    "film": "Memoir of a Snail"
+                    "film": "Memoir of a Snail",
+                    "trailer": "https://www.youtube.com/watch?v=Ehc8cc7g31I&ab_channel=IFCFilms"
                 },
                 {
-                    "film": "Wallace & Gromit"
+                    "film": "Wallace & Gromit",
+                    "trailer": "https://www.youtube.com/watch?v=X0ZGf2B01uU&ab_channel=Netflix"
                 },
                 {
-                    "film": "The Wild Robot"
+                    "film": "The Wild Robot",
+                    "trailer": "https://www.youtube.com/watch?v=67vbA5ZJdKQ&ab_channel=UniversalPictures"
                 }
             ],
             "my_winner": {
@@ -91,11 +95,11 @@
             "nominees": [
                 {
                     "film": "A Complete Unknown",
-                    "crew": "Eric Roth"
+                    "crew": "James Mangold & Jay Cocks"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "Peter Morgan"
+                    "crew": "Peter Straughan"
                 },
                 {
                     "film": "Emilia Pérez",
@@ -103,16 +107,16 @@
                 },
                 {
                     "film": "Nickel Boys",
-                    "crew": "Colson Whitehead"
+                    "crew": "RaMell Ross & Joslyn Barnes"
                 },
                 {
                     "film": "Sing Sing",
-                    "crew": "Tony Kushner"
+                    "crew": "Clint Bentley & Greg Kwedar"
                 }
             ],
             "my_winner": {
                 "film": "A Complete Unknown",
-                "crew": "Eric Roth"
+                "crew": "James Mangold & Jay Cocks"
             },
             "official_winner": null
         },
@@ -125,7 +129,7 @@
                 },
                 {
                     "film": "The Brutalist",
-                    "crew": "Brady Corbet"
+                    "crew": "Brady Corbet & Mona Fastvoldt"
                 },
                 {
                     "film": "A Real Pain",
@@ -133,7 +137,7 @@
                 },
                 {
                     "film": "September 5",
-                    "crew": "Paul Schrader"
+                    "crew": "Moritz Binder & Tim Fehlbaum"
                 },
                 {
                     "film": "The Substance",
@@ -142,7 +146,7 @@
             ],
             "my_winner": {
                 "film": "The Brutalist",
-                "crew": "Brady Corbet"
+                "crew": "Brady Corbet & Mona Fastvoldt"
             },
             "official_winner": null
         },
@@ -151,28 +155,28 @@
             "nominees": [
                 {
                     "film": "A Different Man",
-                    "crew": "Kazu Hiro"
+                    "crew": "Mike Marino, David Presto & Crystal Jurado"
                 },
                 {
                     "film": "Emilia Pérez",
-                    "crew": "Donald Mowat"
+                    "crew": "Julia Floch Carbonel, Emmanuel Janvier & Jean-Christophe Spadaccini"
                 },
                 {
                     "film": "Nosferatu",
-                    "crew": "Nadia Stacey"
+                    "crew": "David White, Traci Loader & Suzanne Stokes-Munton"
                 },
                 {
                     "film": "The Substance",
-                    "crew": "Naomi Donne"
+                    "crew": "Pierre-Olivier Persin, Stéphanie Guillon & Marilyne Scarselli"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Morag Ross"
+                    "crew": "Frances Hannon, Laura Blount & Sarah Nuth"
                 }
             ],
             "my_winner": {
                 "film": "The Substance",
-                "crew": "Naomi Donne"
+                "crew": "Pierre-Olivier Persin, Stéphanie Guillon & Marilyne Scarselli"
             },
             "official_winner": null
         },
@@ -181,28 +185,28 @@
             "nominees": [
                 {
                     "film": "A Complete Unknown",
-                    "crew": "Mark Bridges"
+                    "crew": "Arianne Phillips"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "Colleen Atwood"
+                    "crew": "Lisy Christl"
                 },
                 {
                     "film": "Gladiator II",
-                    "crew": "Janty Yates"
+                    "crew": "Janty Yates & Dave Crossmans"
                 },
                 {
                     "film": "Nosferatu",
-                    "crew": "Michael Wilkinson"
+                    "crew": "Linda Muir"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Catherine Martin"
+                    "crew": "Paul Tazewell"
                 }
             ],
             "my_winner": {
                 "film": "Wicked",
-                "crew": "Catherine Martin"
+                "crew": "Paul Tazewell"
             },
             "official_winner": null
         },
@@ -211,28 +215,28 @@
             "nominees": [
                 {
                     "film": "The Brutalist",
-                    "crew": "Nathan Crowley"
+                    "crew": "Judy Becker & Patricia Cuccia"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "Sarah Greenwood"
+                    "crew": "Suzie Davies & Cynthia Sleiter"
                 },
                 {
                     "film": "Dune Part Two",
-                    "crew": "Patrice Vermette"
+                    "crew": "Patrice Vermette & Shane Vieau"
                 },
                 {
                     "film": "Nosferatu",
-                    "crew": "Rick Carter"
+                    "crew": "Craig Lathrop & Beatrice Brentnerová"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Catherine Martin"
+                    "crew": "Nathan Crowley & Lee Sandales"
                 }
             ],
             "my_winner": {
                 "film": "Conclave",
-                "crew": "Sarah Greenwood"
+                "crew": "Suzie Davies & Cynthia Sleiter"
             },
             "official_winner": null
         },
@@ -241,28 +245,28 @@
             "nominees": [
                 {
                     "film": "A Complete Unknown",
-                    "crew": "Mark Weingarten"
+                    "crew": "Tod A. Maitland, Donald Sylvester, Ted Caplan, Paul Massey & David Giammarco"
                 },
                 {
                     "film": "Dune Part Two",
-                    "crew": "Mac Ruth"
+                    "crew": "Gareth John, Richard King, Ron Bartlett & Doug Hemphill"
                 },
                 {
                     "film": "Emilia Pérez",
-                    "crew": "Randy Thom"
+                    "crew": "Erwan Kerzanet, Aymeric Devoldère, Maxence Dussère, Cyril Holtz & Niels Barletta"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Gary Rydstrom"
+                    "crew": "Simon Hayes, Nancy Nugent Title, Jack Dolman, Andy Nelson & John Marquis"
                 },
                 {
                     "film": "The Wild Robot",
-                    "crew": "Christopher Boyes"
+                    "crew": "Randy Thom, Brian Chumney, Gary A. Rizzo & Leff Lefferts"
                 }
             ],
             "my_winner": {
                 "film": "Dune Part Two",
-                "crew": "Mac Ruth"
+                "crew": "Gareth John, Richard King, Ron Bartlett & Doug Hemphill"
             },
             "official_winner": null
         },
@@ -271,28 +275,28 @@
             "nominees": [
                 {
                     "film": "Alien Romulus",
-                    "crew": "Dan Glass"
+                    "crew": "Eric Barba, Nelson Sepulveda-Fauser, Daniel Macarin & Shane Mahan"
                 },
                 {
                     "film": "Better Man",
-                    "crew": "Dan Lemmon"
+                    "crew": "Luke Millar, David Clayton, Keith Herft & Peter Stubbs"
                 },
                 {
                     "film": "Dune Part Two",
-                    "crew": "Paul Lambert"
+                    "crew": "Paul Lambert, Stephen James, Rhys Salcombe & Gerd Nefzer"
                 },
                 {
                     "film": "Kingdom of the Planet of the Apes",
-                    "crew": "Joe Letteri"
+                    "crew": "Erik Winquist, Stephen Unterfranz, Paul Story & Rodney Burke"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Dan Sudick"
+                    "crew": "Pablo Helman, Jonathan Fawkner, David Shirk & Paul Corbould"
                 }
             ],
             "my_winner": {
                 "film": "Dune Part Two",
-                "crew": "Paul Lambert"
+                "crew": "Paul Lambert, Stephen James, Rhys Salcombe & Gerd Nefzer"
             },
             "official_winner": null
         },
@@ -301,15 +305,15 @@
             "nominees": [
                 {
                     "film": "Anora",
-                    "crew": "Jennifer Lame"
+                    "crew": "Sean Baker"
                 },
                 {
                     "film": "The Brutalist",
-                    "crew": "Joe Walker"
+                    "crew": "David Jancso"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "William Goldenberg"
+                    "crew": "Nick Emerson"
                 },
                 {
                     "film": "Emilia Pérez",
@@ -317,12 +321,12 @@
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Michael McCusker"
+                    "crew": "Myron Kerstein"
                 }
             ],
             "my_winner": {
                 "film": "Anora",
-                "crew": "Jennifer Lame"
+                "crew": "Sean Baker"
             },
             "official_winner": null
         },
@@ -331,7 +335,7 @@
             "nominees": [
                 {
                     "film": "The Brutalist",
-                    "crew": "Hoyte van Hoytema"
+                    "crew": "Lol Crawley"
                 },
                 {
                     "film": "Dune Part Two",
@@ -339,11 +343,11 @@
                 },
                 {
                     "film": "Emilia Pérez",
-                    "crew": "Benoît Debie"
+                    "crew": "Paul Guilhaume"
                 },
                 {
                     "film": "Maria",
-                    "crew": "Darius Khondji"
+                    "crew": "Ed Lachman"
                 },
                 {
                     "film": "Nosferatu",
@@ -385,27 +389,27 @@
             "nominees": [
                 {
                     "film": "The Brutalist",
-                    "crew": "Hans Zimmer",
+                    "crew": "Daniel Blumberg",
                     "trailer": "https://www.youtube.com/watch?v=2olBDm1ekFQ&ab_channel=SonySoundtracksVEVO"
                 },
                 {
                     "film": "Conclave",
-                    "crew": "Alexandre Desplat",
+                    "crew": "Volker Bertelmann",
                     "trailer": "https://www.youtube.com/watch?v=U4DR1D5wZ7g&ab_channel=VolkerBertelmann-Topic"
                 },
                 {
                     "film": "Emilia Pérez",
-                    "crew": "Nicholas Britell",
+                    "crew": "Clément Ducol & Camille",
                     "trailer": "https://www.youtube.com/watch?v=cxrLrymdV0k&ab_channel=Release-Topic"
                 },
                 {
                     "film": "Wicked",
-                    "crew": "Stephen Schwartz",
+                    "crew": "John Powell & Stephen Schwartz",
                     "trailer": "https://www.youtube.com/watch?v=RwNX7IUdLfU&list=PLL7eixYHeVxDwz6jQZ0Ef4UA9Ly774PVk&index=27&ab_channel=JohnPowell-Topic"
                 },
                 {
                     "film": "The Wild Robot",
-                    "crew": "Michael Giacchino",
+                    "crew": "Kris Bowers",
                     "trailer": "https://www.youtube.com/watch?v=ng0R_4WkQ88&ab_channel=Release-Topic"
                 }
             ],
@@ -420,7 +424,7 @@
             "nominees": [
                 {
                     "film": "El Mal",
-                    "crew": "Lin-Manuel Miranda - Emilia Pérez",
+                    "crew": "Clément Ducol & Camille - Emilia Pérez",
                     "trailer": "https://www.youtube.com/watch?v=IkLRuy3qFHY&ab_channel=SonySoundtracksVEVO"
                 },
                 {
@@ -430,17 +434,17 @@
                 },
                 {
                     "film": "Like a Bird",
-                    "crew": "Jack Antonoff - Sing Sing",
+                    "crew": "Abraham Alexander and Adrian Quesada - Sing Sing",
                     "trailer": "https://www.youtube.com/watch?v=tAE8o7GalKg&ab_channel=A24"
                 },
                 {
                     "film": "Mi Camino",
-                    "crew": "Lin-Manuel Miranda - Emilia Pérez",
+                    "crew": "Camille and Clément Ducol - Emilia Pérez",
                     "trailer": "https://www.youtube.com/watch?v=REM5u28nToc&ab_channel=SelenaGomez"
                 },
                 {
                     "film": "Never Too Late",
-                    "crew": "Elton John - Elton John: Never Too Late",
+                    "crew": "Elton John, Brandi Carlile, Andrew Watt & Bernie Taupin - Elton John: Never Too Late",
                     "trailer": "https://www.youtube.com/watch?v=UwL4UC_tLTI&ab_channel=EltonJohnVEVO"
                 }
             ],

@@ -37,6 +37,7 @@ body {
   position: relative;
   scroll-snap-align: start;
   overflow: hidden;
+  gap: 4px;
 }
 
 .intro-section::before {
@@ -64,7 +65,6 @@ body {
 .intro-section h1 {
   font-family: 'Futura PT Medium', 'Futura', sans-serif;
   font-size: clamp(2rem, 5vw, 3.5rem);
-  margin: 0 0 1.5rem;
   color: var(--oscar-gold);
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -392,6 +392,8 @@ body {
   opacity: 0.9;
 }
 
+
+
 /* Bouton pour révéler le gagnant */
 .reveal-winner-btn {
   background-color: transparent;
@@ -617,4 +619,92 @@ html {
 
 .not-seen-card.winner-card:hover {
   box-shadow: 0 0 25px rgba(85, 86, 90, 0.4);
+}
+
+.thanks-content {
+  max-width: min(1200px, 95vw);
+  width: 100%;
+  height: 90vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+  padding: 2vh 0;
+  position: relative;
+}
+
+.thanks-btn {
+  background-color: transparent;
+  color: var(--oscar-red);
+  border: 2px solid var(--oscar-red);
+  padding: 1.5vh 4vw;
+  font-family: 'Futura PT Medium', 'Futura', sans-serif;
+  font-size: min(3.5vw, 1rem);
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 2vh auto;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.thanks-btn:hover:not(:disabled) {
+  background-color: var(--oscar-red);
+  color: var(--oscar-white);
+  transform: scale(1.05);
+}
+
+/* Falling Heart Animation */
+.falling-heart {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fall 2s linear forwards;
+  -webkit-mask:
+     radial-gradient(circle at 60% 65%, #fff 64%, transparent 65%) top left,
+     radial-gradient(circle at 40% 65%, #fff 64%, transparent 65%) top right,
+     linear-gradient(to bottom left, #fff 43%,transparent 43%) bottom left ,
+     linear-gradient(to bottom right,#fff 43%,transparent 43%) bottom right;
+  -webkit-mask-size: 50% 50%;
+  -webkit-mask-repeat: no-repeat;
+  mask:
+     radial-gradient(circle at 60% 65%, #fff 64%, transparent 65%) top left,
+     radial-gradient(circle at 40% 65%, #fff 64%, transparent 65%) top right,
+     linear-gradient(to bottom left, #fff 43%,transparent 43%) bottom left ,
+     linear-gradient(to bottom right,#fff 43%,transparent 43%) bottom right;
+  mask-size: 50% 50%;
+  mask-repeat: no-repeat;
+  background: var(--heart-gradient);
+  aspect-ratio: 1;
+}
+
+.falling-heart::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+/* Falling Circle Animation */
+.falling-circle {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  animation: fall 2s linear forwards;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+@keyframes fall {
+  from {
+    top: -100px;
+    transform: rotate(0deg);
+  }
+  to {
+    top: 100vh;
+    transform: rotate(var(--spin-amount));
+  }
 }
