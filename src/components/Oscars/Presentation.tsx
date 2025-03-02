@@ -475,38 +475,42 @@ export const Presentation = () => {
   return (
     <div className="oscars-presentation">
       <div className="intro-section" ref={assignRef(0)}>
-        <div className="flex flex-col items-center justify-center mb-4">
+        <div className="flex flex-col items-center justify-center mb-12 gap-4">
           <h1>The {year - 1928}th Academy Awards</h1>
           <div className="oscars-text-logo" />
         </div>
-        {language === 'fr' ? (
-          <p className="text-sm">
-            Bienvenue dans ma propre cérémonie de remise des Oscars {year}.
-            <br />
-            Ayant vu une grande partie des films nominés cette année, je voulais vous partagez mes
-            avis sur les films de cette belle année qui s'est déroulé.
-            <br />
-            J'ai fait ça pour vous partager les films que j'ai préféré cette année.
-            <br />
-            Je vous laisse vous balader et explorer le site en défilant vers le bas.
-            <br />
-            J'espère que vous aimerez !
-          </p>
-        ) : (
-          <p className="text-sm">
-            Welcome to my very own {year} Oscars ceremony.
-            <br />
-            Having watched a large portion of this year's nominated films, I wanted to share my
-            thoughts on the movies from this wonderful year.
-            <br />I created this to share my favorite films of the year with you.
-            <br />
-            Feel free to explore by scrolling down.
-            <br />I hope you enjoy it!
-          </p>
-        )}
-        <button type="button" className="underline" onClick={handleLanguageChange}>
-          {language === 'fr' ? 'English' : 'Français'}
-        </button>
+        <div className="relative flex flex-col items-center">
+          {language === 'fr' ? (
+            <p className="text-md">
+              Bienvenue dans ma propre cérémonie de remise des Oscars {year}.
+              <br />
+              Ayant vu une grande partie des films nominés cette année, je voulais vous partagez mes
+              avis sur les films de cette belle année qui s'est déroulé.
+              <br />
+              J'ai fait ça pour vous partager les films que j'ai préféré cette année.
+              <br />
+              Je vous laisse vous balader et explorer le site en défilant vers le bas.
+              <br />
+              J'espère que vous aimerez !
+            </p>
+          ) : (
+            <p className="text-md">
+              Welcome to my very own {year} Oscars ceremony.
+              <br />
+              Having watched a large portion of this year's nominated films, I wanted to share my
+              thoughts on the movies from this wonderful year.
+              <br />I created this to share my favorite films of the year with you.
+              <br />
+              Feel free to explore by scrolling down.
+              <br />I hope you enjoy it!
+            </p>
+          )}
+          <div className="mt-4">
+            <div className="language-toggle-btn" onClick={() => handleLanguageChange()}>
+              {language === 'fr' ? 'English' : 'Français'}
+            </div>
+          </div>
+        </div>
 
         <div className="scroll-indicator" onClick={() => navigateToSection(1)}>
           <span>Scroll</span>
